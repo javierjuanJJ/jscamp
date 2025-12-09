@@ -1,6 +1,13 @@
 const boton = document.querySelector('#boton-importante')
 
+let aplicado = false
+
 boton.addEventListener('click', function () {
-  // Cambiar el texto del botón
-  boton.textContent = '¡Aplicado!'
+  if (aplicado) {
+    boton.textContent = 'Aplicar a empleo'
+    aplicado = false
+  } else {
+    boton.textContent = '¡Aplicado!'
+    aplicado = true
+  }
 })
