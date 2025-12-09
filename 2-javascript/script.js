@@ -1,13 +1,13 @@
-// Función tradicional
-botones.forEach(function (boton) {
-    boton.addEventListener('click', function () {
-        boton.textContent = '¡Aplicado!'
-    })
+// ❌ MAL: No puedes añadir eventos directamente al NodeList
+const botones = document.querySelectorAll('.button-apply-job')
+botones.addEventListener('click', function () {
+  /* ... */
 })
+// Error: botones.addEventListener is not a function
 
-// Arrow function
-botones.forEach((boton) => {
-    boton.addEventListener('click', () => {
-        boton.textContent = '¡Aplicado!'
-    })
+// ✅ BIEN: Usa forEach
+botones.forEach(function (boton) {
+  boton.addEventListener('click', function () {
+    /* ... */
+  })
 })
