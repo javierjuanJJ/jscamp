@@ -1,13 +1,8 @@
 const boton = document.querySelector('#boton-importante')
 
-let aplicado = false
-
 boton.addEventListener('click', function () {
-  if (aplicado) {
-    boton.textContent = 'Aplicar a empleo'
-    aplicado = false
-  } else {
-    boton.textContent = '¡Aplicado!'
-    aplicado = true
-  }
+  boton.textContent = '¡Aplicado!'
+
+  // Cambiar el color de fondo
+  boton.style.backgroundColor = '#22c55e' // Verde
 })
