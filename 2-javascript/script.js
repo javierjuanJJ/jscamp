@@ -1,7 +1,12 @@
-// Si añadimos un botón después...
-const nuevoBoton = document.createElement('button')
-nuevoBoton.className = 'button-apply-job'
-nuevoBoton.textContent = 'Aplicar'
-document.body.appendChild(nuevoBoton)
+const container = document.querySelector('#container')
+const boton = document.querySelector('#boton')
 
-// ❌ Este botón NO tendrá el evento!
+// Evento en el contenedor
+container.addEventListener('click', function () {
+  console.log('2. Click en el container')
+})
+
+// Evento en el botón
+boton.addEventListener('click', function () {
+  console.log('1. Click en el botón')
+})
