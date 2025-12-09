@@ -2,7 +2,8 @@ const boton = document.querySelector('#boton-importante')
 
 boton.addEventListener('click', function () {
   boton.textContent = '¡Aplicado!'
-
-  // Cambiar el color de fondo
-  boton.style.backgroundColor = '#22c55e' // Verde
+  boton.style.backgroundColor = '#22c55e'
+  boton.style.color = 'white'
+  boton.style.border = 'none'
+  boton.style.cursor = 'not-allowed'
 })
