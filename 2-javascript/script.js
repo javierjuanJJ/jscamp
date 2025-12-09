@@ -1,8 +1,7 @@
-const botones = document.querySelectorAll('.button-apply-job')
+// Si añadimos un botón después...
+const nuevoBoton = document.createElement('button')
+nuevoBoton.className = 'button-apply-job'
+nuevoBoton.textContent = 'Aplicar'
+document.body.appendChild(nuevoBoton)
 
-botones.forEach(function (boton) {
-  boton.addEventListener('click', function () {
-    boton.textContent = '¡Aplicado!'
-    boton.disabled = true
-  })
-})
+// ❌ Este botón NO tendrá el evento!
