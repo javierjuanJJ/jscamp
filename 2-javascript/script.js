@@ -1,12 +1,9 @@
-const container = document.querySelector('#container')
-const boton = document.querySelector('#boton')
+// ✅ Un solo evento en el padre
+const container = document.querySelector('#jobs-list')
 
-// Evento en el contenedor
-container.addEventListener('click', function () {
-  console.log('2. Click en el container')
-})
-
-// Evento en el botón
-boton.addEventListener('click', function () {
-  console.log('1. Click en el botón')
+container.addEventListener('click', function (event) {
+  // Detectamos si el click fue en un botón
+  if (event.target.classList.contains('button-apply-job')) {
+    // Código aquí
+  }
 })
