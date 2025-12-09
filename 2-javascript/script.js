@@ -1,13 +1,5 @@
-// ❌ MAL: No puedes añadir eventos directamente al NodeList
-const botones = document.querySelectorAll('.button-apply-job')
-botones.addEventListener('click', function () {
-  /* ... */
-})
-// Error: botones.addEventListener is not a function
+// ❌ MAL: Busca una etiqueta <button-apply-job>
+const botones = document.querySelectorAll('button-apply-job')
 
-// ✅ BIEN: Usa forEach
-botones.forEach(function (boton) {
-  boton.addEventListener('click', function () {
-    /* ... */
-  })
-})
+// ✅ BIEN: Busca elementos con class="button-apply-job"
+const botones = document.querySelectorAll('.button-apply-job')
