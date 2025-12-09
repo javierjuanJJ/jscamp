@@ -1,7 +1,10 @@
-// La función anónima es el callback
+console.log('Inicio: Cargando el script')
+
+const boton = document.querySelector('#boton-importante')
+console.log('Botón encontrado:', boton)
+
 boton.addEventListener('click', function () {
-    console.log('Este código solo se ejecuta al hacer click')
-  })
-  
-  // El resto del código se ejecuta normalmente
-  console.log('Este código se ejecuta inmediatamente')
+  console.log('¡Hiciste click!')
+})
+
+console.log('Fin: Script cargado, esperando eventos')
