@@ -1,7 +1,16 @@
 const boton = document.querySelector('#boton-importante')
 
-// Leer el contenido de texto
-console.log(boton.textContent) // "Haz clic"
+const rect = boton.getBoundingClientRect()
 
-// Cambiar el contenido de texto
-boton.textContent = 'Nuevo texto'
+console.log(rect)
+
+/* Salida: {
+  width: 120,
+  height: 40,
+  x: 100,
+  y: 200,
+  top: 200,
+  left: 100,
+  right: 220,
+  bottom: 240
+} */
