@@ -1,13 +1,9 @@
-const container = document.querySelector('#container')
-const boton = document.querySelector('#boton')
-
-container.addEventListener('click', function () {
-  console.log('Click en container')
+// Evento en el documento (para cerrar menús, por ejemplo)
+document.addEventListener('click', function () {
+    console.log('Cerrar menú')
 })
 
+// Si detienes la propagación aquí...
 boton.addEventListener('click', function (event) {
-  console.log('Click en botón')
-
-  // Detener el bubbling
-  event.stopPropagation()
+    event.stopPropagation() // ❌ El evento del document no se ejecuta
 })
