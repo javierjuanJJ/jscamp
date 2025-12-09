@@ -1,14 +1,14 @@
+// Seleccionar todos los botones
 const botones = document.querySelectorAll('.button-apply-job')
 
-// Tiene .length como los arrays
-console.log(botones.length) // 3
-
-// Podemos acceder por índice
-console.log(botones[0]) // Primer botón
-console.log(botones[1]) // Segundo botón
-console.log(botones[2]) // Tercer botón
-
-// Tiene forEach (pero no map, filter, reduce, etc.)
+// Añadir evento a cada uno
 botones.forEach(function (boton) {
-  console.log(boton)
+  boton.addEventListener('click', function () {
+    console.log('Click en:', boton.textContent)
+
+    // Cambiar este botón específico
+    boton.textContent = '¡Aplicado!'
+    boton.style.backgroundColor = '#22c55e'
+    boton.disabled = true
+  })
 })
