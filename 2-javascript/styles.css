@@ -500,3 +500,28 @@ article {
     border-color: #1e293b;
 
 }
+
+/* Seleccionar por ID con # */
+#boton-importante {
+    background: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    &:hover {
+      background: darkblue;
+    }
+  }
+
+
+  /* Especificidad: 10 */
+.blue-button {
+    background: red;
+  }
+  
+  /* Especificidad: 100 - GANA */
+  #mi-boton {
+    background: blue; /* Este se aplica */
+  }
