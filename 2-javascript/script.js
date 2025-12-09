@@ -1,4 +1,5 @@
-// Selecciona solo el PRIMER botón que encuentre
-const boton = document.querySelector('.button-apply-job')
+// Selecciona TODOS los botones con esa clase
+const botones = document.querySelectorAll('.button-apply-job')
 
-console.log(boton) // <button class="button-apply-job">Aplicar</button>
+console.log(botones) // NodeList(3) [button, button, button]
+console.log(botones.length) // 3
