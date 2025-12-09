@@ -1,14 +1,13 @@
-// Seleccionar todos los botones
-const botones = document.querySelectorAll('.button-apply-job')
+// querySelector - Solo el primero
+const primerBoton = document.querySelector('.button-apply-job')
+primerBoton.addEventListener('click', function () {
+  console.log('Solo funciona en el primer botón')
+})
 
-// Añadir evento a cada uno
-botones.forEach(function (boton) {
+// querySelectorAll - Todos
+const todosLosBotones = document.querySelectorAll('.button-apply-job')
+todosLosBotones.forEach(function (boton) {
   boton.addEventListener('click', function () {
-    console.log('Click en:', boton.textContent)
-
-    // Cambiar este botón específico
-    boton.textContent = '¡Aplicado!'
-    boton.style.backgroundColor = '#22c55e'
-    boton.disabled = true
+    console.log('Funciona en todos los botones')
   })
 })
