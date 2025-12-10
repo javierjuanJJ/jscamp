@@ -221,7 +221,8 @@ form {
     padding-inline: 1rem;
 }
 
-form>div {
+form>div 
+form>div>nav{
     display: flex;
     align-items: center;
     background-color: var(--input-bg);
@@ -383,6 +384,12 @@ footer {
     }
 }
 
+footer > div.itemResponsability {
+    background-color: var(--background);
+    text-align: left;
+    padding: 16px;
+}
+
 
 article {
     background-color: var(--card-bg);
@@ -411,6 +418,28 @@ article {
 
 
 
+
+.headerJob>article {
+
+    background: none;
+    margin: 0;
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+}
+
+.headerJob>article>small {
+    font-size: 0.875rem;
+    opacity: 0.75;
+}
+
+.headerJob>article>p {
+    margin-top: 0.5rem;
+}
+
+.headerJob>article>button:hover {
+    background-color: #09f;
+}
 
 
 .jobs-listings>article {
