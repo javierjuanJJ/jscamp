@@ -1,9 +1,11 @@
-// Evento en el documento (para cerrar menús, por ejemplo)
-document.addEventListener('click', function () {
-    console.log('Cerrar menú')
-})
+const jobsListingSection = document.querySelector('.jobs-listings')
 
-// Si detienes la propagación aquí...
-boton.addEventListener('click', function (event) {
-    event.stopPropagation() // ❌ El evento del document no se ejecuta
+jobsListingSection.addEventListener('click', function(event){
+    const element = event.target
+
+    if (element.classList.contains('button-apply-job')) {
+        element.textContent = 'Aplicado'
+        element.classList.add('is-applied')
+        element.disabled = true
+    }
 })
