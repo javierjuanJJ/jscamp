@@ -52,38 +52,68 @@
                         <path d="M21 21l-6 -6" />
                     </svg>
 
-                    <input id="input-nombre"  required type="text" placeholder="Buscar empleos por título, habilidad o empresa">
+                    <input id="input-nombre" required type="text"
+                        placeholder="Buscar empleos por título, habilidad o empresa">
                 </div>
 
                 <div class="search-filters">
 
-                    
+
                     <select id="filter-technology">
-                        <option value="">Todas</option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
-                        <option value="react">React</option>
+                        <option value="">Todas las tecnologías</option>
+
+                        <optgroup label="Frontend">
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="react">React</option>
+                            <option value="vue">Vue</option>
+                        </optgroup>
+
+                        <optgroup label="Backend">
+                            <option value="node">Node.js</option>
+                            <option value="python">Python</option>
+                            <option value="php">PHP</option>
+                            <option value="java">Java</option>
+                        </optgroup>
+
+                        <optgroup label="Base de datos">
+                            <option value="mysql">MySQL</option>
+                            <option value="mongodb">MongoDB</option>
+                            <option value="postgresql">PostgreSQL</option>
+                        </optgroup>
                     </select>
 
-                    <select>
-                        <option value="manzana" selected>Manzana</option>
-                        <option value="banana">Banana</option>
-                        <option value="cereza">Cereza</option>
-                        <option value="naranja">Naranja</option>
+                    <select id="filter-level">
+                        <option value="">Todos los niveles</option>
+                        <option value="junior">Junior</option>
+                        <option value="mid">Mid-level</option>
+                        <option value="senior">Senior</option>
+
+                        <hr />
+
+                        <option value="intern">Prácticas</option>
+                        <option value="freelance">Freelance</option>
                     </select>
 
-                    <select>
-                        <option value="manzana" selected>Manzana</option>
-                        <option value="banana">Banana</option>
-                        <option value="cereza">Cereza</option>
-                        <option value="naranja">Naranja</option>
-                    </select>
+                    <select id="job-location">
+                        <option value="">Todas las ubicaciones</option>
 
-                    <select>
-                        <option value="manzana" selected>Manzana</option>
-                        <option value="banana">Banana</option>
-                        <option value="cereza">Cereza</option>
-                        <option value="naranja">Naranja</option>
+                        <optgroup label="España">
+                            <option value="madrid">Madrid</option>
+                            <option value="barcelona">Barcelona</option>
+                            <option value="valencia">Valencia</option>
+                        </optgroup>
+
+                        <optgroup label="México">
+                            <option value="cdmx">Ciudad de México</option>
+                            <option value="monterrey">Monterrey</option>
+                            <option value="guadalajara">Guadalajara</option>
+                        </optgroup>
+
+                        <hr />
+
+                        <option value="remote">🌍 Remoto</option>
                     </select>
 
 
@@ -100,7 +130,7 @@
             <footer>
 
                 <div class="jobs-listings">
-                    <article class="job-listing-card" technology = "JavaScript React Node">
+                    <article class="job-listing-card" technology="JavaScript React Node">
                         <div>
                             <h3>Ingeniero de Software</h3>
                             <small>Tech Solutions Inc. | Remoto</small>
@@ -114,7 +144,7 @@
                         <button id="boton-importante" class="button-apply-job" id="boton-importante">Aplicar</button>
                     </article>
 
-                    <article class="job-listing-card" technology = "SQL Python R">
+                    <article class="job-listing-card" technology="SQL Python R">
                         <div>
                             <h3>Analista de Datos</h3>
                             <small>Data Driven Co. | Ciudad de México</small>
@@ -127,7 +157,7 @@
                         <button class="button-apply-job">Aplicar</button>
                     </article>
 
-                    <article class="job-listing-card" technology = "Swift Kotlin">
+                    <article class="job-listing-card" technology="Swift Kotlin">
                         <div>
                             <h3>Desarrollador de Aplicaciones Móviles</h3>
                             <small>Mobile Apps Ltd. | Guadalajara</small>
@@ -140,7 +170,7 @@
                         <button class="button-apply-job">Aplicar</button>
                     </article>
 
-                    <article class="job-listing-card" technology = "AWS Azure GCP">
+                    <article class="job-listing-card" technology="AWS Azure GCP">
                         <div>
                             <h3>Ingeniero de DevOps</h3>
                             <small>Cloud Services SA | Remoto</small>
