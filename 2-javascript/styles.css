@@ -58,7 +58,7 @@ body::before {
 body {
     font-family: system-ui;
     background-color: var(--background);
-    
+
 
     color: var(--text-primary);
     min-height: 100vh;
@@ -67,12 +67,11 @@ body {
     line-height: 1.6;
 }
 
-body.image{
+body.image {
     background: url("./background.webp");
 }
-body.image::before {
 
-}
+body.image::before {}
 
 
 
@@ -414,7 +413,7 @@ article {
 
 
 
-.jobs-listings > article {
+.jobs-listings>article {
 
     background: none;
     box-shadow: none;
@@ -433,24 +432,24 @@ article {
     border-radius: 1rem;
 }
 
-.jobs-listings > article > small {
+.jobs-listings>article>small {
     font-size: 0.875rem;
     opacity: 0.75;
 }
 
-.jobs-listings > article > p {
+.jobs-listings>article>p {
     margin-top: 0.5rem;
 }
 
-.jobs-listings > article > button:hover {
+.jobs-listings>article>button:hover {
     background-color: #09f;
 }
 
-.jobs-listings > article:last-child {
+.jobs-listings>article:last-child {
     border-bottom: none;
 }
 
-.pagination > a {
+.pagination>a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -462,23 +461,26 @@ article {
     transition: all 0.3s;
 }
 
-.pagination > a:hover, pagination > a:focus {
+.pagination>a:hover,
+pagination>a:focus {
     background-color: #fff;
 }
 
-.pagination > a:active {
+.pagination>a:active {
     transform: scale(0.9);
 }
 
-.pagination > a:active {
+.pagination>a:active {
     background-color: var(--primary-light);
-        color: white;
-        pointer-events: none;
+    color: white;
+    pointer-events: none;
 }
-.pagination > a.is-active {
+
+.pagination>a.is-active {
     transform: scale(0.9);
     background-color: var(--primary-light);
 }
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -486,9 +488,10 @@ article {
     margin-block: 2rem;
 }
 
-.search-filters{
+.search-filters {
     background-color: var(--background);
 }
+
 .search-filters>select {
     display: flex;
     gap: 0.5rem;
@@ -501,6 +504,10 @@ article {
 
 }
 
+.is-hidden {
+    display: none;
+}
+
 /* Seleccionar por ID con # */
 #boton-importante {
     background: blue;
@@ -509,19 +516,20 @@ article {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  
+
     &:hover {
-      background: darkblue;
+        background: darkblue;
     }
-  }
+}
 
 
-  /* Especificidad: 10 */
+/* Especificidad: 10 */
 .blue-button {
     background: red;
-  }
-  
-  /* Especificidad: 100 - GANA */
-  #mi-boton {
-    background: blue; /* Este se aplica */
-  }
+}
+
+/* Especificidad: 100 - GANA */
+#mi-boton {
+    background: blue;
+    /* Este se aplica */
+}

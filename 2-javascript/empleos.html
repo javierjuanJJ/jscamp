@@ -7,7 +7,7 @@
     <meta name="description" content="Encuentra las mejores ofertas de trabajo para desarrolladores en DevJobs.">
 
     <link rel="stylesheet" href="./styles.css" />
-    
+
 
 </head>
 
@@ -57,11 +57,12 @@
 
                 <div class="search-filters">
 
-                    <select>
-                        <option value="manzana" selected>Manzana</option>
-                        <option value="banana">Banana</option>
-                        <option value="cereza">Cereza</option>
-                        <option value="naranja">Naranja</option>
+                    <label for="filter-technology">Tecnología</label>
+                    <select id="filter-technology">
+                        <option value="">Todas</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="react">React</option>
                     </select>
 
                     <select>
@@ -99,7 +100,7 @@
             <footer>
 
                 <div class="jobs-listings">
-                    <article class="job-listing-card">
+                    <article class="job-listing-card" technology = "JavaScript React Node">
                         <div>
                             <h3>Ingeniero de Software</h3>
                             <small>Tech Solutions Inc. | Remoto</small>
@@ -113,7 +114,7 @@
                         <button id="boton-importante" class="button-apply-job" id="boton-importante">Aplicar</button>
                     </article>
 
-                    <article class="job-listing-card">
+                    <article class="job-listing-card" technology = "SQL Python R">
                         <div>
                             <h3>Analista de Datos</h3>
                             <small>Data Driven Co. | Ciudad de México</small>
@@ -126,7 +127,7 @@
                         <button class="button-apply-job">Aplicar</button>
                     </article>
 
-                    <article class="job-listing-card">
+                    <article class="job-listing-card" technology = "Swift Kotlin">
                         <div>
                             <h3>Desarrollador de Aplicaciones Móviles</h3>
                             <small>Mobile Apps Ltd. | Guadalajara</small>
@@ -139,7 +140,7 @@
                         <button class="button-apply-job">Aplicar</button>
                     </article>
 
-                    <article class="job-listing-card">
+                    <article class="job-listing-card" technology = "AWS Azure GCP">
                         <div>
                             <h3>Ingeniero de DevOps</h3>
                             <small>Cloud Services SA | Remoto</small>
@@ -174,8 +175,8 @@
 
         <small>&copy; 2025 DevJobs. Todos los derechos reservados.</small>
     </footer>
-<!-- defer descarga en paralelo pero ejecuta después de parsear -->
-<script src="./script.js"></script>
+    <!-- defer descarga en paralelo pero ejecuta después de parsear -->
+    <script src="./script.js"></script>
 </body>
 
 </html>
