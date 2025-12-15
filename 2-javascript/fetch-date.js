@@ -1,3 +1,5 @@
+const RESULTS_PER_PAGE = 3
+
 const container = document.querySelector('.jobs-listings')
 const loading = document.querySelector('#jobs-loading')
 
@@ -15,9 +17,35 @@ fetch('./data.json') // obtenemos el archivo data.json
             return
         }
 
+        const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE)
+
+        const paginationContainer = document.querySelector('.pagination')
+        // Limpiar la paginación existente
+        paginationContainer.innerHTML = ''
+        const currentPage = 1
+
+        // Crear un botón por cada página
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button')
+            button.textContent = i
+            button.className = 'page-button'
+
+            // Si es la página actual, añadir clase activa
+            if (i === currentPage) {
+                button.classList.add('active')
+            }
+
+            paginationContainer.appendChild(button)
+        }
+
+
+
+        const startIndex = (currentPage - 1) * RESULTS_PER_PAGE
+        const endIndex = startIndex + RESULTS_PER_PAGE
+        const jobsToShow = jobs.slice(startIndex, endIndex)
 
         // recorremos los datos y los mostramos en el DOM
-        jobs.forEach((job) => {
+        jobsToShow.forEach((job) => {
             // creamos un elemento HTML <article> para cada trabajo
             const article = document.createElement('article')
             // añadimos la clase job-listing-card al elemento
@@ -49,4 +77,6 @@ fetch('./data.json') // obtenemos el archivo data.json
             // añadimos el elemento al contenedor
             container.appendChild(article)
         })
+
+
     })
