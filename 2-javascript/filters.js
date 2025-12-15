@@ -11,25 +11,6 @@ const filterLevel = document.querySelector('#filter-level')
 const jobLocation = document.querySelector('#job-location')
 
 
-function showFlexJobs() {
-    const jobs = document.querySelectorAll('.job-listing-card')
-    return [...jobs].filter(job => job.style.display === '' || job.style.display === 'flex');
-
-}
-
-function showAllJobs() {
-    const jobs = document.querySelectorAll('.job-listing-card')
-    return [...jobs];
-
-}
-
-function putFlexToComun(array) {
-    const comunes = [...new Set([...showAllJobs(), ...array])];
-    comunes.forEach(job => {
-        job.style.display = 'flex';
-    })
-}
-
 filterTechnology.addEventListener('change', function () {
     applyAllFilters();
 })

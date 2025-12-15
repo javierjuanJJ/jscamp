@@ -505,8 +505,13 @@ pagination>a:focus {
     pointer-events: none;
 }
 
-.pagination>a.is-active {
+.is-active {
     transform: scale(0.9);
+    background-color: var(--primary-light);
+}
+
+.is-active:hover {
+    transform: scale(1);
     background-color: var(--primary-light);
 }
 
