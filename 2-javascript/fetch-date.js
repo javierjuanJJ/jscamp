@@ -1,4 +1,5 @@
 const container = document.querySelector('.jobs-listings')
+const loading = document.querySelector('#jobs-loading')
 
 fetch('./data.json') // obtenemos el archivo data.json
   .then((response) => {
@@ -6,6 +7,15 @@ fetch('./data.json') // obtenemos el archivo data.json
     return response.json()
   })
   .then((jobs) => {
+
+    if (loading) loading.remove()
+
+    if (jobs.length === 0) {
+      container.innerHTML = '<p>No hay empleos disponibles por ahora.</p>'
+      return
+    }
+
+
     // recorremos los datos y los mostramos en el DOM
     jobs.forEach((job) => {
       // creamos un elemento HTML <article> para cada trabajo
