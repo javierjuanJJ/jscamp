@@ -30,6 +30,7 @@ fetch('./data.json') // obtenemos el archivo data.json
             const wrapper = document.createElement('div')
 
             const title = document.createElement('h3')
+            title.className = 'title-information'
             title.textContent = job.titulo
 
             const meta = document.createElement('small')
