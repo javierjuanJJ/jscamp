@@ -55,8 +55,9 @@ fetch('https://jsonplaceholder.typicode.com/todos').then((response) => {
 fetch('./data.json')
 .then((response) => {
     return response.json();
-}).then((data) => {
-    console.log(data)
+}).then((jobs) => {
+    console.log('Empleos obtenidos:', jobs.length)
+    console.log(jobs)
 })
 .catch((error) => {
     console.error('No pudimos obtener los datos', error)
