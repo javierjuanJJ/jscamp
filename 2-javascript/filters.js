@@ -13,9 +13,12 @@ const jobLocation = document.querySelector('#job-location')
 filterTechnology.addEventListener('change', function () {
     const jobs = document.querySelectorAll('.job-listing-card')
 
-    const selectedValue = filterTechnology.value
+    // Obtener todas las opciones que están seleccionadas
+    const selectedValue = Array.from(filterTechnology.options)
+    .filter(option => option.selected)
+    .map(option => option.value);
 
-    if (selectedValue.length === 0) {
+    if (selectedValue.length === 1 && selectedValue[0] === '') {
         jobs.forEach(job => {
             job.style.display = 'flex';
         })
@@ -23,10 +26,11 @@ filterTechnology.addEventListener('change', function () {
     else {
         jobs.forEach(job => {
             // const modalidad = job.dataset.modalidad
-            const modalidad = job.getAttribute('data-technology')
+            const modalityJob = job.getAttribute('data-technology').split(',')
 
-            console.log(modalidad, " ", selectedValue)
-            const isShown = modalityJob.toLowerCase().includes(technologyFiltered) ? 'flex' : 'none';
+            console.log(modalityJob, " " , selectedValue)
+            
+            const isShown = modalityJob.some((tech) => selectedValue.includes(tech)) ? 'flex' : 'none';
 
             job.style.display = isShown;
         })
@@ -48,8 +52,6 @@ filterLevel.addEventListener('change', function () {
         jobs.forEach(job => {
             // const modalidad = job.dataset.modalidad
             const modalidad = job.getAttribute('data-nivel')
-    
-            console.log(modalidad, " ", selectedValue)
     
             const isShown = selectedValue === modalidad.toLowerCase() ? 'flex' : 'none';
     
@@ -75,8 +77,6 @@ jobLocation.addEventListener('change', function () {
         jobs.forEach(job => {
             // const modalidad = job.dataset.modalidad
             const modalidad = job.getAttribute('data-modalidad')
-    
-            console.log(modalidad, " ", selectedValue)
             const isShown = selectedValue === modalidad.toLowerCase() ? 'flex' : 'none';
     
             job.style.display = isShown;
@@ -108,13 +108,9 @@ filterInput.addEventListener('input', function () {
     }
     else {
         counterJobs = 0
-        console.log(counterJobs)
         jobs.forEach(job => {
             // const modalidad = job.dataset.modalidad
             const title = job.getElementsByClassName('title-information')[0].textContent;
-            console.log(title)
-
-            console.log(title, " ", selectedValue)
             const includesTitle = title.toLowerCase().includes(selectedValue);
             const isShown = includesTitle ? 'flex' : 'none';
 
