@@ -92,7 +92,11 @@ const filterInput = document.querySelector('#input-nombre')
 
 
 filterInput.addEventListener('input', function () {
+    
     const jobs = document.querySelectorAll('.job-listing-card')
+    const messajeBox = document.getElementById('mensajeBusqueda')
+    const totalJobs = jobs.length
+    let counterJobs = 0;
 
     const selectedValue = filterInput.value
 
@@ -100,19 +104,30 @@ filterInput.addEventListener('input', function () {
         jobs.forEach(job => {
             job.style.display = 'flex';
         })
+        messajeBox.textContent = `Mostrando ${totalJobs} de ${totalJobs} trabajos` 
     }
     else {
+        counterJobs = 0
+        console.log(counterJobs)
         jobs.forEach(job => {
             // const modalidad = job.dataset.modalidad
             const title = job.getElementsByClassName('title-information')[0].textContent;
             console.log(title)
 
             console.log(title, " ", selectedValue)
-            const isShown = title.toLowerCase().includes(selectedValue) ? 'flex' : 'none';
+            const includesTitle = title.toLowerCase().includes(selectedValue);
+            const isShown = includesTitle ? 'flex' : 'none';
 
             job.style.display = isShown;
+            if (includesTitle === true){counterJobs++} 
+
         })
+        messajeBox.textContent = `Mostrando ${counterJobs} de ${totalJobs} trabajos` 
     }
+
+    
+
+
 
 
 })
