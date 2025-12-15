@@ -1,14 +1,3 @@
-const jobsListingSection = document.querySelector('.jobs-listings')
-
-jobsListingSection.addEventListener('click', function (event) {
-    const element = event.target
-
-    if (element.classList.contains('button-apply-job')) {
-        element.textContent = 'Aplicado'
-        element.classList.add('is-applied')
-        element.disabled = true
-    }
-})
 
 
 
@@ -43,22 +32,4 @@ inputNombre.addEventListener('keyup', function (event) {
 formulario.addEventListener('submit', function (event) {
     event.preventDefault();
     console.log('Formulario enviado')
-})
-
-
-fetch('https://jsonplaceholder.typicode.com/todos').then((response) => {
-    console.log(response.ok) // true si la petición salió bien
-    console.log(response.status) // código HTTP, por ejemplo 200
-})
-
-
-fetch('./data.json')
-.then((response) => {
-    return response.json();
-}).then((jobs) => {
-    console.log('Empleos obtenidos:', jobs.length)
-    console.log(jobs)
-})
-.catch((error) => {
-    console.error('No pudimos obtener los datos', error)
 })
