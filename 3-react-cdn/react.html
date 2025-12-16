@@ -27,15 +27,15 @@
   <script type="text/babel">
 
     // Nuestro primer componente
-    function Saludar() {
-      return <h1>¡Hola desde un componente!</h1>
+    function Saludar(props) {
+      return <h1>¡Hola, {props.nombre}!</h1>
     }
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
     );
 
-    root.render(<Saludar />);
+    root.render(<Saludar nombre="Javier" />);
   </script>
 </body>
 
