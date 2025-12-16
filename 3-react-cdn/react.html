@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,17 +25,35 @@
 
   <!-- Código React con JSX -->
   <script type="text/babel">
-    const titulo = (
-      <h1 style={{ color: "#09f" }}>
-        ¡Hola React con JSX!
-      </h1>
-    );
+
+    const empleos = [
+      { titulo: 'Frontend Developer', empresa: 'TechCorp', ubicacion: 'Madrid' },
+      { titulo: 'Backend Developer', empresa: 'CodeLabs', ubicacion: 'Barcelona' },
+      { titulo: 'Full Stack Developer', empresa: 'DevStudio', ubicacion: 'Valencia' }
+    ]
+
+
+    const app = (
+      <div>
+        <h1>DevJobs - Ofertas de empleo</h1>
+        <p>Hay {empleos.length} ofertas disponibles</p>
+
+        <article className="job-listing-card">
+          <h3>{empleos[0].titulo}</h3>
+          <small>
+            {empleos[0].empresa} | {empleos[0].ubicacion}
+          </small>
+          <button className="button-apply-job">Aplicar</button>
+        </article>
+      </div>
+    )
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
     );
 
-    root.render(titulo);
+    root.render(app);
   </script>
 </body>
+
 </html>
