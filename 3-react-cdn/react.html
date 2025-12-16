@@ -63,6 +63,29 @@
     }
     // Componente JobCard con múltiples props
     function JobCard({ titulo, empresa, ubicacion, descripcion }) {
+
+      const handleGuardar = () => {
+        alert(`Guardando ${titulo}`)
+      }
+
+      const handleCompartir = () => {
+        alert(`Compartiendo ${titulo}`)
+      }
+      // Función que se ejecuta al hacer click
+      const handleAplicar = () => {
+        console.log('¡Click en el botón!')
+        console.log('Aplicando a:', titulo, '-', empresa)
+
+        // Podemos usar todas las props
+        console.log('Título:', titulo)
+        console.log('Empresa:', empresa)
+        console.log('Ubicación:', ubicacion)
+        console.log('Descripción:', descripcion)
+
+
+        alert(`Has aplicado a: ${titulo} en ${empresa}`)
+      }
+
       return (
         <article className="job-listing-card">
           <div>
@@ -72,7 +95,11 @@
             </small>
             <p>{descripcion}</p>
           </div>
-          <button className="button-apply-job">Aplicar</button>
+          <button className="button-apply-job" onClick={handleAplicar}>
+            Aplicar
+          </button>
+          <button onClick={handleGuardar}>Guardar</button>
+          <button onClick={handleCompartir}>Compartir</button>
         </article>
       )
     }
@@ -118,6 +145,7 @@
 
         <div>
           <Header />
+          <Formulario/>
           <JobList />
           <Footer />
         </div>
@@ -126,6 +154,19 @@
       )
     }
 
+    function Formulario() {
+      const handleSubmit = (event) => {
+        event.preventDefault() // Evita recargar la página
+        console.log('Formulario enviado')
+      }
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Nombre" />
+          <button type="submit">Enviar</button>
+        </form>
+      )
+    }
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
