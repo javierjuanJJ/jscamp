@@ -64,6 +64,10 @@
     // Componente JobCard con múltiples props
     function JobCard({ titulo, empresa, ubicacion, descripcion }) {
 
+      const [aplicado, setAplicado] = React.useState(false)
+      const [guardado, setGuardado] = React.useState(false)
+      const [likes, setLikes] = React.useState(0)
+
       const handleGuardar = () => {
         alert(`Guardando ${titulo}`)
       }
@@ -82,24 +86,19 @@
         console.log('Ubicación:', ubicacion)
         console.log('Descripción:', descripcion)
 
-
         alert(`Has aplicado a: ${titulo} en ${empresa}`)
       }
 
       return (
-        <article className="job-listing-card">
-          <div>
-            <h3>{titulo}</h3>
-            <small>
-              {empresa} | {ubicacion}
-            </small>
-            <p>{descripcion}</p>
-          </div>
-          <button className="button-apply-job" onClick={handleAplicar}>
-            Aplicar
+        <article>
+          <h3>{titulo}</h3>
+          <button onClick={() => setAplicado(!aplicado)}>
+            {aplicado ? '¡Aplicado!' : 'Aplicar'}
           </button>
-          <button onClick={handleGuardar}>Guardar</button>
-          <button onClick={handleCompartir}>Compartir</button>
+          <button onClick={() => setGuardado(!guardado)}>
+            {guardado ? '❤️ Guardado' : '🤍 Guardar'}
+          </button>
+          <button onClick={() => setLikes(likes + 1)}>👍 {likes}</button>
         </article>
       )
     }
@@ -139,13 +138,28 @@
         </footer>
       )
     }
+
+    function Contador() {
+      const [count, setCount] = React.useState(0)
+
+      return (
+        <div>
+          <p>Has hecho clic {count} veces</p>
+          <button onClick={() => setCount(count + 1)}>Incrementar</button>
+          <button onClick={() => setCount(count - 1)}>Decrementar</button>
+          <button onClick={() => setCount(0)}>Resetear</button>
+        </div>
+      )
+    }
+
     // Componente App
     function App() {
       return (
 
         <div>
           <Header />
-          <Formulario/>
+          <Contador />
+          <Formulario />
           <JobList />
           <Footer />
         </div>
