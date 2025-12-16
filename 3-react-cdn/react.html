@@ -26,33 +26,16 @@
   <!-- Código React con JSX -->
   <script type="text/babel">
 
-    const empleos = [
-      { titulo: 'Frontend Developer', empresa: 'TechCorp', ubicacion: 'Madrid' },
-      { titulo: 'Backend Developer', empresa: 'CodeLabs', ubicacion: 'Barcelona' },
-      { titulo: 'Full Stack Developer', empresa: 'DevStudio', ubicacion: 'Valencia' }
-    ]
-
-
-    const app = (
-      <div>
-        <h1>DevJobs - Ofertas de empleo</h1>
-        <p>Hay {empleos.length} ofertas disponibles</p>
-
-        <article className="job-listing-card">
-          <h3>{empleos[0].titulo}</h3>
-          <small>
-            {empleos[0].empresa} | {empleos[0].ubicacion}
-          </small>
-          <button className="button-apply-job">Aplicar</button>
-        </article>
-      </div>
-    )
+    // Nuestro primer componente
+    function Saludar() {
+      return <h1>¡Hola desde un componente!</h1>
+    }
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
     );
 
-    root.render(app);
+    root.render(<Saludar />);
   </script>
 </body>
 
