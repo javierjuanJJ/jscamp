@@ -26,23 +26,27 @@
   <!-- Código React con JSX -->
   <script type="text/babel">
 
-    // Nuestro primer componente
-    function Saludar({ nombre, edad, ciudad }) {
-      return (
-        <div>
-          <h1>¡Hola, {nombre}!</h1>
-          <p>
-            Tienes {edad} años y vives en {ciudad}
-          </p>
-        </div>
-      )
+    function Saludar({ nombre, color }) {
+      const estilos = {
+        color: color,
+        fontSize: '32px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+      }
+
+      return <h1 style={estilos}>¡Hola, {nombre}!</h1>
     }
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
     );
 
-    root.render(<Saludar nombre="Miguel" edad={25} ciudad="Madrid" />);
+    root.render(
+      <>
+        <Saludar nombre="Miguel" color="#09f" />
+        <Saludar nombre="Ana" color="#f90" />
+      </>
+    );
   </script>
 </body>
 
