@@ -26,23 +26,113 @@
   <!-- Código React con JSX -->
   <script type="text/babel">
 
-    function Saludar({ nombre, color }) {
+    const empleos = [
+      {
+        id: 1,
+        titulo: 'Desarrollador Frontend',
+        empresa: 'Tech Solutions Inc.',
+        ubicacion: 'Remoto',
+        descripcion: 'Buscamos un desarrollador frontend con experiencia en React.',
+      },
+      {
+        id: 2,
+        titulo: 'Ingeniero Backend',
+        empresa: 'Data Systems',
+        ubicacion: 'Madrid',
+        descripcion: 'Experiencia con Node.js y bases de datos.',
+      },
+      {
+        id: 3,
+        titulo: 'Full Stack Developer',
+        empresa: 'StartupCo',
+        ubicacion: 'Barcelona',
+        descripcion: 'Desarrollo completo de aplicaciones web.',
+      },
+    ]
+
+    function Header() {
       return (
-        <h1 style={{ color: color, fontSize: '32px', textAlign: 'center' }}>
-          ¡Hola, {nombre}!
-        </h1>
+        <header>
+          <h1>DevJobs</h1>
+          <nav>
+            <a href="/">Inicio</a>
+            <a href="/empleos">Empleos</a>
+          </nav>
+        </header>
       )
     }
+    // Componente JobCard con múltiples props
+    function JobCard({ titulo, empresa, ubicacion, descripcion }) {
+      return (
+        <article className="job-listing-card">
+          <div>
+            <h3>{titulo}</h3>
+            <small>
+              {empresa} | {ubicacion}
+            </small>
+            <p>{descripcion}</p>
+          </div>
+          <button className="button-apply-job">Aplicar</button>
+        </article>
+      )
+    }
+
+    function JobList() {
+      return (
+        <section>
+          <h2>Empleos disponibles</h2>
+          <div className="jobs-listings">
+            <JobCard
+              titulo={empleos[0].titulo}
+              empresa={empleos[0].empresa}
+              ubicacion={empleos[0].ubicacion}
+              descripcion={empleos[0].descripcion}
+            />
+            <JobCard
+              titulo={empleos[1].titulo}
+              empresa={empleos[1].empresa}
+              ubicacion={empleos[1].ubicacion}
+              descripcion={empleos[1].descripcion}
+            />
+            <JobCard
+              titulo={empleos[2].titulo}
+              empresa={empleos[2].empresa}
+              ubicacion={empleos[2].ubicacion}
+              descripcion={empleos[2].descripcion}
+            />
+          </div>
+        </section>
+      )
+    }
+
+    function Footer() {
+      return (
+        <footer>
+          <p>&copy; 2025 DevJobs</p>
+        </footer>
+      )
+    }
+    // Componente App
+    function App() {
+      return (
+
+        <div>
+          <Header />
+          <JobList />
+          <Footer />
+        </div>
+
+
+      )
+    }
+
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
     );
 
     root.render(
-      <>
-        <Saludar nombre="Miguel" color="#09f" />
-        <Saludar nombre="Ana" color="#f90" />
-      </>
+      <App />
     );
   </script>
 </body>
