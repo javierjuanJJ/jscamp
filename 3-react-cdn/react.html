@@ -27,14 +27,11 @@
   <script type="text/babel">
 
     function Saludar({ nombre, color }) {
-      const estilos = {
-        color: color,
-        fontSize: '32px',
-        fontWeight: 'bold',
-        textAlign: 'center',
-      }
-
-      return <h1 style={estilos}>¡Hola, {nombre}!</h1>
+      return (
+        <h1 style={{ color: color, fontSize: '32px', textAlign: 'center' }}>
+          ¡Hola, {nombre}!
+        </h1>
+      )
     }
 
     const root = ReactDOMClient.createRoot(
