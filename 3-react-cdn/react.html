@@ -27,15 +27,22 @@
   <script type="text/babel">
 
     // Nuestro primer componente
-    function Saludar({ nombre }) {
-      return <h1>¡Hola, {nombre}!</h1>
+    function Saludar({ nombre, edad, ciudad }) {
+      return (
+        <div>
+          <h1>¡Hola, {nombre}!</h1>
+          <p>
+            Tienes {edad} años y vives en {ciudad}
+          </p>
+        </div>
+      )
     }
 
     const root = ReactDOMClient.createRoot(
       document.getElementById("root")
     );
 
-    root.render(<Saludar nombre="Javier" />);
+    root.render(<Saludar nombre="Miguel" edad={25} ciudad="Madrid" />);
   </script>
 </body>
 
