@@ -27,8 +27,8 @@
   <script type="text/babel">
 
     // Nuestro primer componente
-    function Saludar(props) {
-      return <h1>¡Hola, {props.nombre}!</h1>
+    function Saludar({ nombre }) {
+      return <h1>¡Hola, {nombre}!</h1>
     }
 
     const root = ReactDOMClient.createRoot(
