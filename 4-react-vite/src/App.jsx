@@ -12,19 +12,23 @@ const RESULTS_PER_PAGE = 4
 
 function App() {
   const [filters, setFilters] = useState({
-      technology: '',
-      location: '',
-      experienceLevel: ''
-    })
+    technology: '',
+    location: '',
+    experienceLevel: ''
+  })
   const [textToFilter, setTextToFilter] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
   // 1. Filtrar por los selects
   const jobsFilteredByFilters = jobsData.filter((job) => {
+    const jobSalary = parseInt(job.data.salary) || 0
+    const minSalary = filters.salary ? parseInt(filters.salary) : 0
     return (
       (filters.technology === '' || job.data.technology === filters.technology) &&
       (filters.location === '' || job.data.modalidad === filters.location) &&
       (filters.experienceLevel === '' || job.data.nivel === filters.experienceLevel)
+      &&
+      jobSalary >= minSalary
     )
   })
 
@@ -45,7 +49,7 @@ function App() {
     setCurrentPage(page)
   }
 
-  
+
 
   const handleSearch = (filters) => {
     setFilters(filters)

@@ -16,6 +16,7 @@ export function JobCard({ job }) {
       data-modalidad={job.data.modalidad}
       data-nivel={job.data.nivel}
       data-technology={job.data.technology}
+      data-salary={job.data.salary}
     >
       <div>
         <h3>{job.titulo}</h3>

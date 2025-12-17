@@ -8,7 +8,8 @@
       "data": {
         "technology": "javascript",
         "modalidad": "remoto",
-        "nivel": "senior"
+        "nivel": "senior",
+        "salary": 30000
       }
     },
     {
@@ -20,7 +21,8 @@
       "data": {
         "technology": "python",
         "modalidad": "cdmx",
-        "nivel": "junior"
+        "nivel": "junior",
+        "salary": 2000
       }
     },
     {
@@ -32,7 +34,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "guadalajara",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 100
       }
     },
     {
@@ -44,7 +47,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "remoto",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 30000
       }
     },
     {
@@ -56,7 +60,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "barcelona",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 0
       }
     },
     {
@@ -68,7 +73,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "bsas",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 620
       }
     },
     {
@@ -80,7 +86,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "remoto",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 500
       }
     },
     {
@@ -93,6 +100,8 @@
         "technology": "mobile",
         "modalidad": "madrid",
         "nivel": "senior"
+        ,
+        "salary": 3000
       }
     },
     {
@@ -104,7 +113,8 @@
       "data": {
         "technology": "react",
         "modalidad": "valencia",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 60
       }
     },
     {
@@ -116,7 +126,8 @@
       "data": {
         "technology": "node",
         "modalidad": "bogota",
-        "nivel": "mid"
+        "nivel": "mid",
+        "salary": 50
       }
     },
     {
@@ -128,7 +139,8 @@
       "data": {
         "technology": "python",
         "modalidad": "remoto",
-        "nivel": "senior"
+        "nivel": "senior",
+        "salary": 60
       }
     },
     {
@@ -140,7 +152,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "lima",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 6000
       }
     },
     {
@@ -152,7 +165,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "santiago",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 30000
       }
     },
     {
@@ -164,7 +178,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "madrid",
-        "nivel": "mid-level"
+        "nivel": "mid-level",
+        "salary": 60
       }
     },
     {
@@ -176,7 +191,8 @@
       "data": {
         "technology": "mobile",
         "modalidad": "monterrey",
-        "nivel": "junior"
+        "nivel": "junior",
+        "salary": 6000
       }
     }
   ]
