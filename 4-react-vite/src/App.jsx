@@ -19,9 +19,12 @@ function App() {
   const [textToFilter, setTextToFilter] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
-  const jobsFilteredByFilters = jobsData.filter(job => {
+  // 1. Filtrar por los selects
+  const jobsFilteredByFilters = jobsData.filter((job) => {
     return (
-      (filters.technology === '' || job.data.technology === filters.technology)
+      (filters.technology === '' || job.data.technology === filters.technology) &&
+      (filters.location === '' || job.data.modalidad === filters.location) &&
+      (filters.experienceLevel === '' || job.data.nivel === filters.experienceLevel)
     )
   })
 
@@ -41,6 +44,8 @@ function App() {
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }
+
+  
 
   const handleSearch = (filters) => {
     setFilters(filters)
