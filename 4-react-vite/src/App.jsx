@@ -14,7 +14,8 @@ function App() {
   const [filters, setFilters] = useState({
     technology: '',
     location: '',
-    experienceLevel: ''
+    experienceLevel: '',
+    contractType: '',
   })
   const [textToFilter, setTextToFilter] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
@@ -28,7 +29,9 @@ function App() {
       (filters.location === '' || job.data.modalidad === filters.location) &&
       (filters.experienceLevel === '' || job.data.nivel === filters.experienceLevel)
       &&
-      jobSalary >= minSalary
+      (jobSalary >= minSalary) 
+      &&
+      (filters.contractType === '' || job.data.contractType === filters.contractType)
     )
   })
 

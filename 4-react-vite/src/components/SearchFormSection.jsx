@@ -6,6 +6,7 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
     const idLocation = useId()
     const idExperienceLevel = useId()
     const idSalary = useId()
+    const idContractType = useId()
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -16,7 +17,8 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
             technology: formData.get(idTechnology),
             location: formData.get(idLocation),
             experienceLevel: formData.get(idExperienceLevel),
-            salary: formData.get(idSalary)
+            salary: formData.get(idSalary),
+            contractType: formData.get(idContractType)
         }
 
         onSearch(filters)
@@ -87,6 +89,15 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
                         <option value="senior">Senior</option>
                         <option value="lead">Lead</option>
                     </select>
+
+                    <select name={idContractType} id={idContractType}>
+                        <option value="">Todos</option>
+                        <option value="full-time">Full Time</option>
+                        <option value="part-time">Part Time</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="internship">Prácticas</option>
+                    </select>
+
 
                     <div className="form-group">
                         <label htmlFor={idSalary}>Salario mínimo</label>

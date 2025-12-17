@@ -10,6 +10,8 @@ export function JobCard({ job }) {
   const buttonClasses = isApplied ? 'button-apply-job is-applied' : 'button-apply-job'
   const buttonText = isApplied ? 'Aplicado' : 'Aplicar'
 
+  console.log(job)
+
   return (
     <article 
       className="job-listing-card"
@@ -17,6 +19,7 @@ export function JobCard({ job }) {
       data-nivel={job.data.nivel}
       data-technology={job.data.technology}
       data-salary={job.data.salary}
+      data-contractType={job.data.contractType}
     >
       <div>
         <h3>{job.titulo}</h3>

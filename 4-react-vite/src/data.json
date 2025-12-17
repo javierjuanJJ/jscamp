@@ -9,7 +9,8 @@
         "technology": "javascript",
         "modalidad": "remoto",
         "nivel": "senior",
-        "salary": 30000
+        "salary": 30000,
+        "contractType": "full-time"
       }
     },
     {
@@ -22,7 +23,8 @@
         "technology": "python",
         "modalidad": "cdmx",
         "nivel": "junior",
-        "salary": 2000
+        "salary": 2000,
+        "contractType": "part-time"
       }
     },
     {
@@ -35,7 +37,8 @@
         "technology": "mobile",
         "modalidad": "guadalajara",
         "nivel": "mid-level",
-        "salary": 100
+        "salary": 100,
+        "contractType": "freelance"
       }
     },
     {
@@ -48,7 +51,8 @@
         "technology": "mobile",
         "modalidad": "remoto",
         "nivel": "mid-level",
-        "salary": 30000
+        "salary": 30000,
+        "contractType": "full-time"
       }
     },
     {
@@ -61,7 +65,8 @@
         "technology": "mobile",
         "modalidad": "barcelona",
         "nivel": "mid-level",
-        "salary": 0
+        "salary": 0,
+        "contractType": "internship"
       }
     },
     {
@@ -74,7 +79,8 @@
         "technology": "mobile",
         "modalidad": "bsas",
         "nivel": "mid-level",
-        "salary": 620
+        "salary": 620,
+        "contractType": "full-time"
       }
     },
     {
@@ -87,7 +93,8 @@
         "technology": "mobile",
         "modalidad": "remoto",
         "nivel": "mid-level",
-        "salary": 500
+        "salary": 500,
+        "contractType": "part-time"
       }
     },
     {
@@ -101,7 +108,8 @@
         "modalidad": "madrid",
         "nivel": "senior"
         ,
-        "salary": 3000
+        "salary": 3000,
+        "contractType": "freelance"
       }
     },
     {
@@ -114,7 +122,8 @@
         "technology": "react",
         "modalidad": "valencia",
         "nivel": "mid-level",
-        "salary": 60
+        "salary": 60,
+        "contractType": "full-time"
       }
     },
     {
@@ -127,7 +136,8 @@
         "technology": "node",
         "modalidad": "bogota",
         "nivel": "mid",
-        "salary": 50
+        "salary": 50,
+        "contractType": "internship"
       }
     },
     {
@@ -140,7 +150,8 @@
         "technology": "python",
         "modalidad": "remoto",
         "nivel": "senior",
-        "salary": 60
+        "salary": 60,
+        "contractType": "full-time"
       }
     },
     {
@@ -153,7 +164,8 @@
         "technology": "mobile",
         "modalidad": "lima",
         "nivel": "mid-level",
-        "salary": 6000
+        "salary": 6000,
+        "contractType": "full-time"
       }
     },
     {
@@ -166,7 +178,8 @@
         "technology": "mobile",
         "modalidad": "santiago",
         "nivel": "mid-level",
-        "salary": 30000
+        "salary": 30000,
+        "contractType": "part-time"
       }
     },
     {
@@ -179,7 +192,8 @@
         "technology": "mobile",
         "modalidad": "madrid",
         "nivel": "mid-level",
-        "salary": 60
+        "salary": 60,
+        "contractType": "freelance"
       }
     },
     {
@@ -192,7 +206,8 @@
         "technology": "mobile",
         "modalidad": "monterrey",
         "nivel": "junior",
-        "salary": 6000
+        "salary": 6000,
+        "contractType": "full-time"
       }
     }
   ]
