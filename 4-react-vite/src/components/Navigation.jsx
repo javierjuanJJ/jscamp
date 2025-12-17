@@ -3,24 +3,24 @@ import { Home } from '../pages/Home'
 import { Search } from '../pages/Search'
 import { NotFound } from '../pages/NotFound'
 export default function Navigation() {
-    const { currentPath, navigateTo } = useRouter()
+    const { currentPath, navigateTo, isActive } = useRouter()
 
     return (
         <>
         <nav>
             <button
-                className={currentPath === '/' ? 'active' : ''}
+                className={isActive('/') ? 'active' : ''}
                 onClick={() => navigateTo('/')}>
                 Home
             </button>
             <button
-                className={currentPath === '/about' ? 'active' : ''}
+                className={isActive('/about') ? 'active' : ''}
                 onClick={() => navigateTo('/about')}
             >
                 About
             </button>
             <button
-                className={currentPath === '/search' ? 'active' : ''}
+                className={isActive('/search') ? 'active' : ''}
                 onClick={() => navigateTo('/search')}
             >
                 Buscar empleo

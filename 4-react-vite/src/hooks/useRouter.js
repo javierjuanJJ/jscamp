@@ -1,33 +1,45 @@
 import { useState, useEffect } from 'react'
 
 export function useRouter() {
-    // Estado para la ruta actual
-    const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
 
-    // Efecto para detectar cambios de navegación
-    useEffect(() => {
-        const handleLocationChange = () => {
-            setCurrentPath(window.location.pathname)
-        }
-
-        // Escuchar cambios en el historial (botón atrás/adelante)
-        window.addEventListener('popstate', handleLocationChange)
-
-        // Cleanup: remover el listener al desmontar
-        return () => {
-            window.removeEventListener('popstate', handleLocationChange)
-        }
-    }, [])
-
-    // Función para navegar programáticamente
-    const navigateTo = (path) => {
-        window.history.pushState({}, '', path)
-        setCurrentPath(path)
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname)
     }
 
-    // Retornar la API del hook
-    return {
-        currentPath,
-        navigateTo,
-    }
+    window.addEventListener('popstate', handleLocationChange)
+    return () => window.removeEventListener('popstate', handleLocationChange)
+  }, [])
+
+  const navigateTo = (path) => {
+    window.history.pushState({}, '', path)
+    setCurrentPath(path)
+  }
+
+  const goBack = () => {
+    window.history.back()
+  }
+
+  const goForward = () => {
+    window.history.forward()
+  }
+
+  // Helper para verificar si estamos en una ruta específica
+  const isActive = (path) => currentPath === path
+
+  // Helper para obtener parámetros de query string
+  const getQueryParams = () => {
+    const params = new URLSearchParams(window.location.search)
+    return Object.fromEntries(params.entries())
+  }
+
+  return {
+    currentPath,
+    navigateTo,
+    goBack,
+    goForward,
+    isActive,
+    queryParams: getQueryParams(),
+  }
 }
