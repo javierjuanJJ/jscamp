@@ -1,6 +1,6 @@
 import { useId, useState } from "react"
 
-export function SearchFormSection({ onTextFilter, onSearch }) {
+export function SearchFormSection({ onTextFilter, onSearch, onReset }) {
 
     // Estado para saber qué campo está activo
     const [focusedField, setFocusedField] = useState(null)
@@ -31,6 +31,13 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
     const handleTextChange = (event) => {
         const text = event.target.value
         onTextFilter(text)
+    }
+
+    const handleReset = () => {
+        // Resetear el formulario
+        document.querySelector('#empleos-search-form').reset()
+        // Notificar al padre
+        onReset()
     }
 
     return (
@@ -66,6 +73,9 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
                         <small className="input-hint">Busca por título de trabajo, empresa o tecnología</small>
                     )}
                     <button type="submit" style={{ position: 'absolute', right: '4px' }}>Buscar</button>
+                    <button type="button" className="btn-secondary" onClick={handleReset}>
+                        Limpiar filtros
+                    </button>
                 </div>
 
                 <div className="search-filters">

@@ -29,7 +29,7 @@ function App() {
       (filters.location === '' || job.data.modalidad === filters.location) &&
       (filters.experienceLevel === '' || job.data.nivel === filters.experienceLevel)
       &&
-      (jobSalary >= minSalary) 
+      (jobSalary >= minSalary)
       &&
       (filters.contractType === '' || job.data.contractType === filters.contractType)
     )
@@ -64,12 +64,23 @@ function App() {
     setCurrentPage(1)
   }
 
+  const handleReset = () => {
+    setFilters({
+      technology: '',
+      location: '',
+      experienceLevel: '',
+      contractType: ''
+    })
+    setTextToFilter('')
+    setCurrentPage(1)
+  }
+
   return (
     <>
       <Header />
 
       <main>
-        <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} />
+        <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} onReset={handleReset} />
 
         <section>
           <JobListings jobs={pagedResults} />
