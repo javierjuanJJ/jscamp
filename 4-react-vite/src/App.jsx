@@ -74,14 +74,19 @@ function App() {
     setTextToFilter('')
     setCurrentPage(1)
   }
-
+  const totalResults = jobsWithTextFilter.length
   return (
     <>
       <Header />
 
       <main>
         <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} onReset={handleReset} />
-
+        <div className="results-summary">
+          <p>
+            Se encontraron <strong>{totalResults}</strong> trabajos
+            {textToFilter && ` para "${textToFilter}"`}
+          </p>
+        </div>
         <section>
           <JobListings jobs={pagedResults} />
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
