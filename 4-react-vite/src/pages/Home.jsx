@@ -1,4 +1,4 @@
-export function Header() {
+export function Home() {
     return (
         <header className="header">
             <div className="header-container">
@@ -7,16 +7,6 @@ export function Header() {
                     <img src="/logo.png" alt="DevJobs" className="logo" />
                     <h1>DevJobs</h1>
                 </a>
-
-                {/* Navegación */}
-                <nav className="nav">
-                    <a href="/" className="nav-link">
-                        Inicio
-                    </a>
-                    <a href="/search" className="nav-link">
-                        Buscar trabajos
-                    </a>
-                </nav>
             </div>
         </header>
     )
