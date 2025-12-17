@@ -1,6 +1,10 @@
-import { useId } from "react"
+import { useId, useState } from "react"
 
 export function SearchFormSection({ onTextFilter, onSearch }) {
+
+    // Estado para saber qué campo está activo
+    const [focusedField, setFocusedField] = useState(null)
+
     const idText = useId()
     const idTechnology = useId()
     const idLocation = useId()
@@ -46,16 +50,30 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
 
 
                     <input
-                        name={idText} id="empleos-search-input" type="text"
+                        name={idText}
+                        id="empleos-search-input"
+                        type="text"
                         placeholder="Buscar trabajos, empresas o habilidades"
                         onChange={handleTextChange}
+                        onFocus={() => setFocusedField('search')}
+                        onBlur={() => setFocusedField(null)}
+                        style={{
+                            borderColor: focusedField === 'search' ? '#4f46e5' : '#d1d5db',
+                            outline: focusedField === 'search' ? '2px solid #4f46e5' : 'none',
+                        }}
                     />
-
+                    {focusedField === 'search' && (
+                        <small className="input-hint">Busca por título de trabajo, empresa o tecnología</small>
+                    )}
                     <button type="submit" style={{ position: 'absolute', right: '4px' }}>Buscar</button>
                 </div>
 
                 <div className="search-filters">
-                    <select name={idTechnology} id="filter-technology">
+                    <select name={idTechnology} id="filter-technology" onFocus={() => setFocusedField('technology')}
+                        onBlur={() => setFocusedField(null)}
+                        style={{
+                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
+                        }}>
                         <option value="">Tecnología</option>
                         <optgroup label="Tecnologías populares">
                             <option value="javascript">JavaScript</option>
@@ -73,7 +91,11 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
                         <option value="php">PHP</option>
                     </select>
 
-                    <select name={idLocation} id="filter-location">
+                    <select name={idLocation} id="filter-location" onFocus={() => setFocusedField('technology')}
+                        onBlur={() => setFocusedField(null)}
+                        style={{
+                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
+                        }}>
                         <option value="">Ubicación</option>
                         <option value="remoto">Remoto</option>
                         <option value="cdmx">Ciudad de México</option>
@@ -82,7 +104,11 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
                         <option value="barcelona">Barcelona</option>
                     </select>
 
-                    <select name={idExperienceLevel} id="filter-experience-level">
+                    <select name={idExperienceLevel} id="filter-experience-level" onFocus={() => setFocusedField('technology')}
+                        onBlur={() => setFocusedField(null)}
+                        style={{
+                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
+                        }}>
                         <option value="">Nivel de experiencia</option>
                         <option value="junior">Junior</option>
                         <option value="mid">Mid-level</option>
@@ -90,7 +116,11 @@ export function SearchFormSection({ onTextFilter, onSearch }) {
                         <option value="lead">Lead</option>
                     </select>
 
-                    <select name={idContractType} id={idContractType}>
+                    <select name={idContractType} id={idContractType} onFocus={() => setFocusedField('technology')}
+                        onBlur={() => setFocusedField(null)}
+                        style={{
+                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
+                        }}>
                         <option value="">Todos</option>
                         <option value="full-time">Full Time</option>
                         <option value="part-time">Part Time</option>
