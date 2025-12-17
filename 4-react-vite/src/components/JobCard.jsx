@@ -19,7 +19,7 @@ export function JobCard({ job }) {
       data-nivel={job.data.nivel}
       data-technology={job.data.technology}
       data-salary={job.data.salary}
-      data-contractType={job.data.contractType}
+      data-contracttype={job.data.contractType}
     >
       <div>
         <h3>{job.titulo}</h3>

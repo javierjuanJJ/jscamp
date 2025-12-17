@@ -15,7 +15,7 @@ function App() {
     technology: '',
     location: '',
     experienceLevel: '',
-    contractType: '',
+    contracttype: '',
   })
   const [textToFilter, setTextToFilter] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
@@ -31,7 +31,7 @@ function App() {
       &&
       (jobSalary >= minSalary)
       &&
-      (filters.contractType === '' || job.data.contractType === filters.contractType)
+      (filters.contracttype === '' || job.data.contracttype === filters.contracttype)
     )
   })
 
@@ -69,7 +69,7 @@ function App() {
       technology: '',
       location: '',
       experienceLevel: '',
-      contractType: ''
+      contracttype: ''
     })
     setTextToFilter('')
     setCurrentPage(1)

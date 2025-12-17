@@ -12,17 +12,16 @@ export function SearchFormSection({ onTextFilter, onSearch, onReset }) {
     const idSalary = useId()
     const idContractType = useId()
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    function handleChange(event) {
 
-        const formData = new FormData(event.target)
-
+        // IMPORTANTE: usar currentTarget, NO target
+        const formData = new FormData(event.currentTarget)
         const filters = {
             technology: formData.get(idTechnology),
             location: formData.get(idLocation),
             experienceLevel: formData.get(idExperienceLevel),
             salary: formData.get(idSalary),
-            contractType: formData.get(idContractType)
+            contracttype: formData.get(idContractType)
         }
 
         onSearch(filters)
@@ -31,6 +30,9 @@ export function SearchFormSection({ onTextFilter, onSearch, onReset }) {
     const handleTextChange = (event) => {
         const text = event.target.value
         onTextFilter(text)
+
+        handleChange(event)
+
     }
 
     const handleReset = () => {
@@ -45,7 +47,7 @@ export function SearchFormSection({ onTextFilter, onSearch, onReset }) {
             <h1>Encuentra tu próximo trabajo</h1>
             <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-            <form onSubmit={handleSubmit} id="empleos-search-form" role="search">
+            <form onChange={handleChange} id="empleos-search-form" role="search">
                 <div className="search-bar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
@@ -72,7 +74,6 @@ export function SearchFormSection({ onTextFilter, onSearch, onReset }) {
                     {focusedField === 'search' && (
                         <small className="input-hint">Busca por título de trabajo, empresa o tecnología</small>
                     )}
-                    <button type="submit" style={{ position: 'absolute', right: '4px' }}>Buscar</button>
                     <button type="button" className="btn-secondary" onClick={handleReset}>
                         Limpiar filtros
                     </button>
