@@ -1,23 +1,16 @@
-import { Header } from './components/Header'
-import { Footer } from './components/Footer'
-import Navigation from './components/Navigation'
-import { useRouter } from './hooks/useRouter'
-
-import { useState, useEffect } from 'react'
-
+// App.jsx - DESPUÉS
+import { Route } from './components/Route'
+import { Home } from './pages/Home'
+import { SearchPage } from './pages/Search'
+import { NotFound } from './pages/NotFound'
 
 function App() {
-  const { currentPath, navigateTo } = useRouter()
-
   return (
-    <div>
-      
-      <main>
-        <Header/>
-        <Navigation/>
-        <Footer/>
-      </main>
-    </div>
+    <>
+      <Route path="/" component={Home} />
+      <Route path="/search" component={SearchPage} />
+      <Route path="/404" component={NotFound} />
+    </>
   )
 }
 

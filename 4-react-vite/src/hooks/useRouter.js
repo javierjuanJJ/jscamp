@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from "react"
 
 export function useRouter() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
@@ -7,39 +7,21 @@ export function useRouter() {
     const handleLocationChange = () => {
       setCurrentPath(window.location.pathname)
     }
-
+  
     window.addEventListener('popstate', handleLocationChange)
-    return () => window.removeEventListener('popstate', handleLocationChange)
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange)
+    }
   }, [])
 
-  const navigateTo = (path) => {
+  function navigateTo(path) {
     window.history.pushState({}, '', path)
-    setCurrentPath(path)
-  }
-
-  const goBack = () => {
-    window.history.back()
-  }
-
-  const goForward = () => {
-    window.history.forward()
-  }
-
-  // Helper para verificar si estamos en una ruta específica
-  const isActive = (path) => currentPath === path
-
-  // Helper para obtener parámetros de query string
-  const getQueryParams = () => {
-    const params = new URLSearchParams(window.location.search)
-    return Object.fromEntries(params.entries())
+    window.dispatchEvent(new PopStateEvent('popstate'))
   }
 
   return {
     currentPath,
-    navigateTo,
-    goBack,
-    goForward,
-    isActive,
-    queryParams: getQueryParams(),
+    navigateTo
   }
 }

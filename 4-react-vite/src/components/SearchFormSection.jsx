@@ -1,153 +1,137 @@
-import { useId, useState } from "react"
+import { useId, useState, useRef } from "react"
 
-export function SearchFormSection({ onTextFilter, onSearch, onReset }) {
+const useSearchForm = ({ idTechnology, idLocation, idExperienceLevel, idText, onSearch, onTextFilter }) => {
+  const timeoutId = useRef(null)
+  const [searchText, setSearchText] = useState("")
 
-    // Estado para saber qué campo está activo
-    const [focusedField, setFocusedField] = useState(null)
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    
+    const formData = new FormData(event.currentTarget)
 
-    const idText = useId()
-    const idTechnology = useId()
-    const idLocation = useId()
-    const idExperienceLevel = useId()
-    const idSalary = useId()
-    const idContractType = useId()
-
-    function handleChange(event) {
-
-        // IMPORTANTE: usar currentTarget, NO target
-        const formData = new FormData(event.currentTarget)
-        const filters = {
-            technology: formData.get(idTechnology),
-            location: formData.get(idLocation),
-            experienceLevel: formData.get(idExperienceLevel),
-            salary: formData.get(idSalary),
-            contracttype: formData.get(idContractType)
-        }
-
-        onSearch(filters)
+    if (event.target.name === idText) {
+      return // ya lo manejamos en onChange
     }
 
-    const handleTextChange = (event) => {
-        const text = event.target.value
-        onTextFilter(text)
-
-        handleChange(event)
-
+    const filters = {
+      technology: formData.get(idTechnology),
+      location: formData.get(idLocation),
+      experienceLevel: formData.get(idExperienceLevel)
     }
 
-    const handleReset = () => {
-        // Resetear el formulario
-        document.querySelector('#empleos-search-form').reset()
-        // Notificar al padre
-        onReset()
+    onSearch(filters)
+  }
+
+  const handleTextChange = (event) => {
+    const text = event.target.value
+    console.log(text)
+    setSearchText(text) // actualizamos el input inmediatamente
+
+    // Debounce: Cancelar el timeout anterior
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current)
     }
 
-    return (
-        <section className="jobs-search">
-            <h1>Encuentra tu próximo trabajo</h1>
-            <p>Explora miles de oportunidades en el sector tecnológico.</p>
+    timeoutId.current = setTimeout(() => {
+      onTextFilter(text)
+    }, 500)
+  }
 
-            <form onChange={handleChange} id="empleos-search-form" role="search">
-                <div className="search-bar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
-                        className="icon icon-tabler icons-tabler-outline icon-tabler-search">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                        <path d="M21 21l-6 -6" />
-                    </svg>
+  return {
+    searchText,
+    handleSubmit,
+    handleTextChange
+  }
+}
 
+export function SearchFormSection ({ onTextFilter, onSearch, initialText }) {
+  const idText = useId()
+  const idTechnology = useId()
+  const idLocation = useId()
+  const idExperienceLevel = useId()
 
-                    <input
-                        name={idText}
-                        id="empleos-search-input"
-                        type="text"
-                        placeholder="Buscar trabajos, empresas o habilidades"
-                        onChange={handleTextChange}
-                        onFocus={() => setFocusedField('search')}
-                        onBlur={() => setFocusedField(null)}
-                        style={{
-                            borderColor: focusedField === 'search' ? '#4f46e5' : '#d1d5db',
-                            outline: focusedField === 'search' ? '2px solid #4f46e5' : 'none',
-                        }}
-                    />
-                    {focusedField === 'search' && (
-                        <small className="input-hint">Busca por título de trabajo, empresa o tecnología</small>
-                    )}
-                    <button type="button" className="btn-secondary" onClick={handleReset}>
-                        Limpiar filtros
-                    </button>
-                </div>
+  const inputRef = useRef()
 
-                <div className="search-filters">
-                    <select name={idTechnology} id="filter-technology" onFocus={() => setFocusedField('technology')}
-                        onBlur={() => setFocusedField(null)}
-                        style={{
-                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
-                        }}>
-                        <option value="">Tecnología</option>
-                        <optgroup label="Tecnologías populares">
-                            <option value="javascript">JavaScript</option>
-                            <option value="python">Python</option>
-                            <option value="react">React</option>
-                            <option value="nodejs">Node.js</option>
-                        </optgroup>
-                        <option value="java">Java</option>
-                        <hr />
-                        <option value="csharp">C#</option>
-                        <option value="c">C</option>
-                        <option value="c++">C++</option>
-                        <hr />
-                        <option value="ruby">Ruby</option>
-                        <option value="php">PHP</option>
-                    </select>
+  const {
+    handleSubmit,
+    handleTextChange
+  } = useSearchForm({ idTechnology, idLocation, idExperienceLevel, idText, onSearch, onTextFilter })
 
-                    <select name={idLocation} id="filter-location" onFocus={() => setFocusedField('technology')}
-                        onBlur={() => setFocusedField(null)}
-                        style={{
-                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
-                        }}>
-                        <option value="">Ubicación</option>
-                        <option value="remoto">Remoto</option>
-                        <option value="cdmx">Ciudad de México</option>
-                        <option value="guadalajara">Guadalajara</option>
-                        <option value="monterrey">Monterrey</option>
-                        <option value="barcelona">Barcelona</option>
-                    </select>
+  const handleClearInput = (event) => {
+    event.preventDefault()
 
-                    <select name={idExperienceLevel} id="filter-experience-level" onFocus={() => setFocusedField('technology')}
-                        onBlur={() => setFocusedField(null)}
-                        style={{
-                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
-                        }}>
-                        <option value="">Nivel de experiencia</option>
-                        <option value="junior">Junior</option>
-                        <option value="mid">Mid-level</option>
-                        <option value="senior">Senior</option>
-                        <option value="lead">Lead</option>
-                    </select>
+    inputRef.current.value = ""
+    onTextFilter("")
+  }
 
-                    <select name={idContractType} id={idContractType} onFocus={() => setFocusedField('technology')}
-                        onBlur={() => setFocusedField(null)}
-                        style={{
-                            borderColor: focusedField === 'technology' ? '#4f46e5' : '#d1d5db',
-                        }}>
-                        <option value="">Todos</option>
-                        <option value="full-time">Full Time</option>
-                        <option value="part-time">Part Time</option>
-                        <option value="freelance">Freelance</option>
-                        <option value="internship">Prácticas</option>
-                    </select>
+  return (
+    <section className="jobs-search">
+      <h1>Encuentra tu próximo trabajo</h1>
+      <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
+      <form onChange={handleSubmit} id="empleos-search-form" role="search">
 
-                    <div className="form-group">
-                        <label htmlFor={idSalary}>Salario mínimo</label>
-                        <input type="number" name={idSalary} id={idSalary} placeholder="30000" min="0" step="1000" />
-                    </div>
-                </div>
-            </form>
+        <div className="search-bar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
+            className="icon icon-tabler icons-tabler-outline icon-tabler-search">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+            <path d="M21 21l-6 -6" />
+          </svg>
+          
+          <input
+            ref={inputRef}
+            name={idText} id="empleos-search-input" type="text"
+            placeholder="Buscar trabajos, empresas o habilidades"
+            onChange={handleTextChange}
+            defaultValue={initialText}
+          />
 
-            <span id="filter-selected-value"></span>
-        </section>
-    )
+          <button onClick={handleClearInput}>
+           ✖︎
+          </button>
+        </div>
+
+        <div className="search-filters">
+          <select name={idTechnology} id="filter-technology">
+            <option value="">Tecnología</option>
+            <optgroup label="Tecnologías populares">
+              <option value="javascript">JavaScript</option>
+              <option value="python">Python</option>
+              <option value="react">React</option>
+              <option value="nodejs">Node.js</option>
+            </optgroup>
+            <option value="java">Java</option>
+            <hr />
+            <option value="csharp">C#</option>
+            <option value="c">C</option>
+            <option value="c++">C++</option>
+            <hr />
+            <option value="ruby">Ruby</option>
+            <option value="php">PHP</option>
+          </select>
+
+          <select name={idLocation} id="filter-location">
+            <option value="">Ubicación</option>
+            <option value="remoto">Remoto</option>
+            <option value="cdmx">Ciudad de México</option>
+            <option value="guadalajara">Guadalajara</option>
+            <option value="monterrey">Monterrey</option>
+            <option value="barcelona">Barcelona</option>
+          </select>
+
+          <select name={idExperienceLevel} id="filter-experience-level">
+            <option value="">Nivel de experiencia</option>
+            <option value="junior">Junior</option>
+            <option value="mid">Mid-level</option>
+            <option value="senior">Senior</option>
+            <option value="lead">Lead</option>
+          </select>
+        </div>
+      </form>
+
+      <span id="filter-selected-value"></span>
+    </section>
+  )
 }
