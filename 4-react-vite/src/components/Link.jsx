@@ -1,7 +1,9 @@
 import { useRouter } from "../hooks/useRouter"
 
 export function Link ({ href, children, ...restOfProps }) {
-  const { navigateTo } = useRouter()
+  const { navigateTo, currentPath } = useRouter()
+
+  const isActive = href === currentPath ? 'active' : ''
 
   const handleClick = (event) => {
     event.preventDefault()
@@ -9,7 +11,7 @@ export function Link ({ href, children, ...restOfProps }) {
   }
 
   return (
-    <a href={href} {...restOfProps} onClick={handleClick}>
+    <a href={href} className={isActive} {...restOfProps} onClick={handleClick}>
       {children}
     </a>
   )

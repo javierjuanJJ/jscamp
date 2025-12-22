@@ -8,7 +8,7 @@ export function Header() {
         <Link href="/">Inicio</Link>
         <Link href="/search">Búsqueda</Link>
         <Link href="/about">Acerca de</Link>
-        <Link href="/contact">Contacto</Link> {/* 👈 Nuevo enlace */}
+        <Link href="/contact">Contacto</Link>
       </nav>
 
       <h1>

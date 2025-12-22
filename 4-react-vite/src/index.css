@@ -457,3 +457,7 @@ article {
     pointer-events: none;
   }
 }
+
+.active{
+  background-color: green;
+}
