@@ -1,5 +1,6 @@
 import { Link } from './Link'
-
+import { SwitchMode } from './SwitchMode'
+import { Breadcrumbs } from './Breadcrumbs'
 export function Header() {
   return (
     <header>
@@ -10,6 +11,9 @@ export function Header() {
         <Link href="/about">Acerca de</Link>
         <Link href="/contact">Contacto</Link>
       </nav>
+
+      <SwitchMode />
+      <Breadcrumbs />
 
       <h1>
         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

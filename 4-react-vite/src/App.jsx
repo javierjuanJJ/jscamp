@@ -12,7 +12,6 @@ function App() {
   return (
     <>
       <Header />
-
       <main>
         <Route path="/" component={Home} />
         <Route path="/search" component={SearchPage} />

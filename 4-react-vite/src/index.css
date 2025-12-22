@@ -26,6 +26,23 @@
 }
 
 
+body.dark {
+  --primary: #ffffff;
+  --primary-dark: #3599eb;
+  --primary-hover: #0d5ba8;
+  --primary-light: #09f;
+  --background: #f0f7fd;
+  --text-primary: #5c5757;
+  --text-secondary: #555a61;
+  --text-muted: #94a3b8;
+  --border: rgba(250, 143, 143, 0.1);
+  --card-bg: #7eadf8;
+  --shadow: rgba(253, 248, 248, 0.3);
+  --input-bg: #9abffa;
+  --hsla-example: hsla(210, 100%, 56%, 1);
+}
+
+
 
 
 

@@ -1,31 +1,27 @@
 
-export function handleSubmit(event, idName, idLastName, idEmail, idPhone) {
+export function handleSubmit(event, name, lastName, email, phone,) {
     event.preventDefault()
 
-    const formData = new FormData(event.currentTarget)
-
     const valuesForm = {
-        nameForm: formData.get(idName),
-        lastNameForm: formData.get(idLastName),
-        emailForm: formData.get(idEmail),
-        phoneForm: formData.get(idPhone)
+        nameForm: name,
+        lastNameForm: lastName,
+        emailForm: email,
+        phoneForm: phone
     }
 
     onValidate(valuesForm)
 }
 
-export const useSearchForm = ({ idName, idLastName, idEmail, idPhone, resetForm }) => {
+export const useSearchForm = ({ name, lastName, email, phone, resetForm }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        const formData = new FormData(event.currentTarget)
-
         const valuesForm = {
-            nameForm: formData.get(idName),
-            lastNameForm: formData.get(idLastName),
-            emailForm: formData.get(idEmail),
-            phoneForm: formData.get(idPhone)
+            nameForm: name,
+            lastNameForm: lastName,
+            emailForm: email,
+            phoneForm: phone
         }
 
         onValidate(valuesForm)
@@ -35,7 +31,7 @@ export const useSearchForm = ({ idName, idLastName, idEmail, idPhone, resetForm 
 
     function onValidate(valuesForm) {
         let isValid = true;
-        console.log(valuesForm.nameForm)
+        
         if (valuesForm.nameForm.trim() === '') {
             alert(valuesForm.nameForm, 'El nombre es obligatorio');
             isValid = false;
