@@ -1,8 +1,15 @@
-
+import { Link } from './Link'
 
 export function Header() {
   return (
     <header>
+
+      <nav>
+        <Link href="/">Inicio</Link>
+        <Link href="/search">Búsqueda</Link>
+        <Link href="/about">Acerca de</Link>
+        <Link href="/contact">Contacto</Link> {/* 👈 Nuevo enlace */}
+      </nav>
 
       <h1>
         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -13,7 +20,7 @@ export function Header() {
         DevJobs
       </h1>
 
-      
+
 
     </header>
   )

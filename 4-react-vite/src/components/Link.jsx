@@ -1,19 +1,16 @@
-function Link({ href, children, ...props }) {
-    const handleClick = (event) => {
-        // 1. Prevenir el comportamiento por defecto (no recargar)
-        event.preventDefault()
+import { useRouter } from "../hooks/useRouter"
 
-        // 2. Cambiar la URL sin recargar la página
-        window.history.pushState({}, '', href)
+export function Link ({ href, children, ...restOfProps }) {
+  const { navigateTo } = useRouter()
 
-        // 3. Emitir un evento para notificar el cambio
-        const navigationEvent = new PopStateEvent('popstate')
-        window.dispatchEvent(navigationEvent)
-    }
+  const handleClick = (event) => {
+    event.preventDefault()
+    navigateTo(href)
+  }
 
-    return (
-        <a href={href} onClick={handleClick} {...props}>
-            {children}
-        </a>
-    )
+  return (
+    <a href={href} {...restOfProps} onClick={handleClick}>
+      {children}
+    </a>
+  )
 }
