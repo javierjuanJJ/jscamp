@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { Pagination } from '../components/Pagination.jsx'
+import { Spinner } from '../components/Spinner.jsx'
 import { SearchFormSection } from '../components/SearchFormSection.jsx'
 import { JobListings } from '../components/JobListings.jsx'
 import { useRouter } from '../hooks/useRouter.js'
@@ -162,9 +163,9 @@ export function SearchPage() {
 
       <section>
         <h2 style={{ textAlign: 'center' }}>Resultados de búsqueda</h2>
-
+        
         {
-          loading ? <p>Cargando empleos...</p> : <JobListings jobs={jobs} />
+          loading ? <Spinner/> : <JobListings jobs={jobs} />
         }
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </section>
