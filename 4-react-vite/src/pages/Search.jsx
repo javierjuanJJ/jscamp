@@ -32,10 +32,12 @@ const useFilters = () => {
   const [jobs, setJobs] = useState([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   const { navigateTo } = useRouter()
 
   useEffect(() => {
+    setError(null)
     async function fetchJobs() {
       try {
         setLoading(true)
@@ -53,18 +55,26 @@ const useFilters = () => {
         const queryParams = params.toString()
 
         const response = await fetch(`https://jscamp-api.vercel.app/api/jobs?${queryParams}`)
-        const json = await response.json()
 
-        setJobs(json.data)
-        setTotal(json.total)
+        if (response.ok) {
+          const json = await response.json()
 
-        const array = Object.values(filters).filter((word) => word.length > 0)
-        setHasNotFilters(array.length === 0)
-        console.log('No hay filtros: ', hasNotFilters, ' ', array)
+          setJobs(json.data)
+          setTotal(json.total)
 
-        localStorage.setItem('jobFilters', JSON.stringify(filters))
-        
+          const array = Object.values(filters).filter((word) => word.length > 0)
+          setHasNotFilters(array.length === 0)
+          console.log('No hay filtros: ', hasNotFilters, ' ', array)
+
+          localStorage.setItem('jobFilters', JSON.stringify(filters))
+        }
+        else{
+          throw new Error('Respuesta no valida: ', response.status)
+        }
+
+
       } catch (error) {
+        setError('Error fetching jobs:', error)
         console.error('Error fetching jobs:', error)
       } finally {
         setLoading(false)
@@ -128,7 +138,8 @@ const useFilters = () => {
     handleSearch,
     handleTextFilter,
     hasNotFilters,
-    handleClearFilters
+    handleClearFilters,
+    error
   }
 }
 
@@ -144,7 +155,8 @@ export function SearchPage() {
     handleSearch,
     handleTextFilter,
     hasNotFilters,
-    handleClearFilters
+    handleClearFilters,
+    error
   } = useFilters()
 
   const title = loading
@@ -166,10 +178,11 @@ export function SearchPage() {
 
       <section>
         <h2 style={{ textAlign: 'center' }}>Resultados de búsqueda</h2>
-        
+
         {
-          loading ? <Spinner/> : <JobListings jobs={jobs} />
+          error !== null ? <button onClick={window.location.reload()}>Error: {error}</button> : loading ? <Spinner /> : <JobListings jobs={jobs} />
         }
+
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </section>
     </main>
