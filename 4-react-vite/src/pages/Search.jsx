@@ -5,6 +5,7 @@ import { Spinner } from '../components/Spinner.jsx'
 import { SearchFormSection } from '../components/SearchFormSection.jsx'
 import { JobListings } from '../components/JobListings.jsx'
 import { useRouter } from '../hooks/useRouter.js'
+import { getErrorMessage } from '../helpers/statusError.js'
 
 const RESULTS_PER_PAGE = 4
 
@@ -37,9 +38,10 @@ const useFilters = () => {
   const { navigateTo } = useRouter()
 
   useEffect(() => {
-    setError(null)
+    
     async function fetchJobs() {
       try {
+        setError(null)
         setLoading(true)
 
         const params = new URLSearchParams()
@@ -69,12 +71,13 @@ const useFilters = () => {
           localStorage.setItem('jobFilters', JSON.stringify(filters))
         }
         else{
-          throw new Error('Respuesta no valida: ', response.status)
+          console.log('status ',response.status)
+          throw new Error(`Respuesta no valida: ${getErrorMessage(response.status)}`)
         }
 
 
       } catch (error) {
-        setError('Error fetching jobs:', error)
+        setError(`Error fetching jobs: ${error}`)
         console.error('Error fetching jobs:', error)
       } finally {
         setLoading(false)
@@ -180,7 +183,7 @@ export function SearchPage() {
         <h2 style={{ textAlign: 'center' }}>Resultados de búsqueda</h2>
 
         {
-          error !== null ? <button onClick={window.location.reload()}>Error: {error}</button> : loading ? <Spinner /> : <JobListings jobs={jobs} />
+          error !== null ? <button onClick={() => window.location.reload()}>Error: {error}</button> : loading ? <Spinner /> : <JobListings jobs={jobs} />
         }
 
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
