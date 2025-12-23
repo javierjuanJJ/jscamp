@@ -11,7 +11,7 @@ const RESULTS_PER_PAGE = 4
 const useFilters = () => {
   const [filters, setFilters] = useState(() => {
     const params = new URLSearchParams(window.location.search)
-    return {
+    return JSON.parse(localStorage.getItem("jobFilters")) || {
       technology: params.get('technology') || '',
       location: params.get('type') || '',
       experienceLevel: params.get('level') || ''
@@ -61,6 +61,8 @@ const useFilters = () => {
         const array = Object.values(filters).filter((word) => word.length > 0)
         setHasNotFilters(array.length === 0)
         console.log('No hay filtros: ', hasNotFilters, ' ', array)
+
+        localStorage.setItem('jobFilters', JSON.stringify(filters))
         
       } catch (error) {
         console.error('Error fetching jobs:', error)
@@ -111,6 +113,7 @@ const useFilters = () => {
       location: '',
       experienceLevel: ''
     })
+    localStorage.removeItem('jobFilters')
     setCurrentPage(1)
   }
 
