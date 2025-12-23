@@ -26,6 +26,8 @@ const useFilters = () => {
     return Number.isNaN(page) ? page : 1
   })
 
+  const [hasNotFilters, setHasNotFilters] = useState(true)
+
   const [jobs, setJobs] = useState([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -48,12 +50,17 @@ const useFilters = () => {
         params.append('offset', offset)
 
         const queryParams = params.toString()
-      
+
         const response = await fetch(`https://jscamp-api.vercel.app/api/jobs?${queryParams}`)
         const json = await response.json()
 
         setJobs(json.data)
         setTotal(json.total)
+
+        const array = Object.values(filters).filter((word) => word.length > 0)
+        setHasNotFilters(array.length === 0)
+        console.log('No hay filtros: ', hasNotFilters, ' ', array)
+        
       } catch (error) {
         console.error('Error fetching jobs:', error)
       } finally {
@@ -97,6 +104,15 @@ const useFilters = () => {
     setCurrentPage(1)
   }
 
+  const handleClearFilters = () => {
+    setFilters({
+      technology: '',
+      location: '',
+      experienceLevel: ''
+    })
+    setCurrentPage(1)
+  }
+
   return {
     loading,
     jobs,
@@ -106,7 +122,9 @@ const useFilters = () => {
     textToFilter,
     handlePageChange,
     handleSearch,
-    handleTextFilter
+    handleTextFilter,
+    hasNotFilters,
+    handleClearFilters
   }
 }
 
@@ -120,7 +138,9 @@ export function SearchPage() {
     textToFilter,
     handlePageChange,
     handleSearch,
-    handleTextFilter
+    handleTextFilter,
+    hasNotFilters,
+    handleClearFilters
   } = useFilters()
 
   const title = loading
@@ -136,6 +156,8 @@ export function SearchPage() {
         initialText={textToFilter}
         onSearch={handleSearch}
         onTextFilter={handleTextFilter}
+        hasNotFilters={hasNotFilters}
+        handleClearFilters={handleClearFilters}
       />
 
       <section>
