@@ -5,16 +5,6 @@ export function Header() {
   return (
     <header>
 
-      <nav>
-        <Link href="/">Inicio</Link>
-        <Link href="/search">Búsqueda</Link>
-        <Link href="/about">Acerca de</Link>
-        <Link href="/contact">Contacto</Link>
-      </nav>
-
-      <SwitchMode />
-      <Breadcrumbs />
-
       <h1>
         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -23,6 +13,15 @@ export function Header() {
         </svg>
         DevJobs
       </h1>
+
+      <nav>
+        <Link href="/">Inicio</Link>
+        <Link href="/search">Búsqueda</Link>
+        <Link href="/about">Acerca de</Link>
+        <Link href="/contact">Contacto</Link>
+      </nav>
+
+
 
 
 

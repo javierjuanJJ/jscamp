@@ -159,19 +159,21 @@ nav {
   gap: 1rem;
   display: flex;
 
-  a {
-    text-decoration: none;
-    color: var(--text-secondary);
-    transition: color 0.2s;
-    font-weight: 500;
-
-    &:hover, &:focus {
-      color: var(--primary);
-      outline: none;
-    }
-  }
+  
 }
 
+nav a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  font-weight: 500;
+
+  
+}
+nav a:hover, nav a:focus {
+  color: #0052a3;
+  outline: none;
+}
 /* Botones del Header */
 header div a {
   padding: 0.5rem 1rem;
@@ -487,5 +489,124 @@ article {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+
+/* Estilos de prosa para contenido de detalle */
+.prose {
+  
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+  color: #111827;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.prose ul {
+  list-style-image: url('assets/circle-check.svg');
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #0052a3;
+}
+
+.prose code {
+  background: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: 'Courier New', monospace;
+}
+
+
+
+
+.prose a {
+  color: #0066cc;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.prose a:hover {
+  color: #0052a3;
+  text-decoration: none;
+}
+
+
+@media (max-width: 640px) {
+  .prose {
+    font-size: 0.9375rem; /* 15px en móviles */
+  }
+
+  .prose h2 {
+    font-size: 1.25rem;
+  }
+
+  .prose h3 {
+    font-size: 1.125rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose {
+    color: #e5e7eb;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    color: #f9fafb;
+  }
+
+  .prose a {
+    color: #60a5fa;
+  }
+
+  .prose a:hover {
+    color: #93c5fd;
+  }
+
+  .prose code {
+    background: #374151;
+    color: #e5e7eb;
   }
 }
