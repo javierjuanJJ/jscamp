@@ -1,24 +1,9 @@
-import { useRouter } from "../hooks/useRouter"
+import { Link as NavLink } from 'react-router'
 
 export function Link ({ href, children, ...restOfProps }) {
-  const { navigateTo, currentPath } = useRouter()
-
-  let isActive = true
-  if (href === '') {
-    isActive = 'active'
-  }
-  else{
-    isActive = currentPath === href ? 'active' : ''
-  }
-
-  const handleClick = (event) => {
-    event.preventDefault()
-    navigateTo(href)
-  }
-
   return (
-    <a href={href} className={isActive} {...restOfProps} onClick={handleClick}>
+    <NavLink to={href} {...restOfProps}>
       {children}
-    </a>
+    </NavLink>
   )
 }

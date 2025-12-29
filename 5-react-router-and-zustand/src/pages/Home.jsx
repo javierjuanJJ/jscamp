@@ -1,6 +1,7 @@
 import { useRouter } from "../hooks/useRouter"
+import styles from "./Home.module.css"
 
-export function Home () {
+export default function HomePage () {
   const { navigateTo } = useRouter()
 
   const handleSearch = (event) => {
@@ -15,15 +16,10 @@ export function Home () {
     navigateTo(url)
   }
 
-  
-
-  
   return (
     <main>
       <section>
         <img src="./background.webp" width="200" />
-
-        
 
         <h1>Encuentra el trabajo de tus sueños</h1>
 
@@ -51,7 +47,7 @@ export function Home () {
         </form>
       </section>
 
-      <section>
+      <section className={styles.section}>
 
         <header>
           <h2>¿Por qué DevJobs?</h2>
@@ -59,7 +55,7 @@ export function Home () {
             talentos con las empresas más innovadoras.</p>
         </header>
 
-        <footer>
+        <div>
           <article>
             <svg fill="currentColor" height="32" viewBox="0 0 256 256" width="32"
               aria-hidden="true">
@@ -92,7 +88,7 @@ export function Home () {
             <h3>Obtén el salario que mereces</h3>
             <p>Obtén el salario que mereces con nuestra calculadora de salarios.</p>
           </article>
-        </footer>
+        </div>
 
       </section>
     </main>
