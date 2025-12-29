@@ -1,0 +1,27 @@
+.spinnerLoad {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 6px solid #ccc;
+    
+    /* color base del borde */
+    border-top: 6px solid #3498db;
+    /* color diferente para el borde superior */
+
+    animation: girar 1s linear infinite;
+}
+.spinnerCenter, .spinnerLoad{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+@keyframes girar {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
