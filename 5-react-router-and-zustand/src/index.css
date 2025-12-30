@@ -571,11 +571,9 @@ article {
   text-decoration: none;
 }
 
-.header-nav-link.navLinkActive {
+.nav-link-active {
   color: yellow;
-  pointer-events: none; /* Desactiva el clic */
-  opacity: 0.6; /* Se ve un poco más apagado */
-  user-select: none; /* Evita seleccionar el texto */
+  pointer-events: none;
 }
 
 
