@@ -51,8 +51,6 @@ export function SearchFormSection ({ onTextFilter, onSearch, initialText, hasNot
 
   const inputRef = useRef()
 
-  console.log('No hay filtros: ', hasNotFilters)
-
   const {
     handleSubmit,
     handleTextChange
