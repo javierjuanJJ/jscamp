@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router'
 import { Pagination } from '../components/Pagination.jsx'
 import { SearchFormSection } from '../components/SearchFormSection.jsx'
 import { JobListings } from '../components/JobListings.jsx'
-
 import styles from './Search.module.css'
 
 const RESULTS_PER_PAGE = 4
@@ -14,7 +13,6 @@ const useFilters = () => {
 
   const [filters, setFilters] = useState(() => {
     return {
-      page: searchParams.get('page') || 1,
       technology: searchParams.get('technology') || '',
       location: searchParams.get('type') || '',
       experienceLevel: searchParams.get('level') || ''
@@ -24,9 +22,8 @@ const useFilters = () => {
   const [textToFilter, setTextToFilter] = useState(() => searchParams.get('text') || '')
 
   const [currentPage, setCurrentPage] = useState(() => {
-    const page = Number(searchParams.get('page')) || 1
-    console.log(page)
-    return Number.isNaN(page) && page > 1 ? page : 1
+    const page = Number(searchParams.get('page'))
+    return Number.isNaN(page) ? page : 1
   })
 
   const [jobs, setJobs] = useState([])
@@ -40,11 +37,9 @@ const useFilters = () => {
 
         const params = new URLSearchParams()
         if (textToFilter) params.append('text', textToFilter)
-
         if (filters.technology) params.append('technology', filters.technology)
         if (filters.location) params.append('type', filters.location)
         if (filters.experienceLevel) params.append('level', filters.experienceLevel)
-        if (filters.page) params.append('page', filters.page)
 
         const offset = (currentPage - 1) * RESULTS_PER_PAGE
         params.append('limit', RESULTS_PER_PAGE)
@@ -77,10 +72,7 @@ const useFilters = () => {
       if (filters.location) params.set('type', filters.location)
       if (filters.experienceLevel) params.set('level', filters.experienceLevel)
 
-      if (filters.page > 0) {
-        params.set('page', filters.page)
-        setCurrentPage(filters.page)
-      }
+      if (currentPage > 1) params.set('page', currentPage)
 
       return params
     })
@@ -91,8 +83,6 @@ const useFilters = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
-    console.log('PAGE CAMBIADO: ' , page)
-
   }
 
   const handleSearch = (filters) => {
@@ -106,6 +96,7 @@ const useFilters = () => {
   }
 
   return {
+    filters,
     loading,
     jobs,
     total,
@@ -120,6 +111,7 @@ const useFilters = () => {
 
 export default function SearchPage() {
   const {
+    filters,
     jobs,
     total,
     loading,
@@ -142,6 +134,7 @@ export default function SearchPage() {
 
       <SearchFormSection
         initialText={textToFilter}
+        initialFilters={filters}
         onSearch={handleSearch}
         onTextFilter={handleTextFilter}
       />
