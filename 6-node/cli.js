@@ -33,8 +33,8 @@ const entries = await Promise.all(
 
 // filter
 // tener en cuenta flags como --files-only o --dirs-only
-
-for (const entry of entries) {
+const entries2 = [...entries].sort((a, b) => b.isDir - a.isDir);
+for (const entry of entries2) {
   // Renderizar la información
   const icon = entry.isDir ? '📁' : '📄'
   const size = entry.isDir ? '-' : ` ${entry.size}`
