@@ -33,8 +33,13 @@ const entries = await Promise.all(
 
 // filter
 // tener en cuenta flags como --files-only o --dirs-only
-const entries2 = [...entries].sort((a, b) => b.isDir - a.isDir);
-for (const entry of entries2) {
+const entriesDir = [...entries].filter(n => n.isDir);
+
+const entriesFiles = [...entries].filter(n => n.isDir == false).sort((a, b) => a.name.localeCompare(b.name, "es"));
+
+const listFilesAndDirectories = [...entriesDir, ...entriesFiles]
+
+for (const entry of listFilesAndDirectories) {
   // Renderizar la información
   const icon = entry.isDir ? '📁' : '📄'
   const size = entry.isDir ? '-' : ` ${entry.size}`
