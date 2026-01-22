@@ -3,7 +3,7 @@ import jobs from '../jobs.json' with { type: 'json' }
 export class JobModel {
   static async getAll({ text, title, level, limit = 10, technology, offset = 0 }) {
     let filteredJobs = jobs
-    
+
     if (text) {
       const searchTerm = text.toLowerCase()
       filteredJobs = filteredJobs.filter(job =>
@@ -17,7 +17,7 @@ export class JobModel {
       )
     }
 
-    const limitNumber = Number(limit) 
+    const limitNumber = Number(limit)
     const offsetNumber = Number(offset)
 
     const paginatedJobs = filteredJobs.slice(offsetNumber, offsetNumber + limitNumber)
@@ -30,7 +30,7 @@ export class JobModel {
     return job
   }
 
-  static async create ({ titulo, empresa, ubicacion, data }) {
+  static async create({ titulo, empresa, ubicacion, data }) {
     const newJob = {
       id: crypto.randomUUID(),
       titulo,
@@ -42,5 +42,28 @@ export class JobModel {
     jobs.push(newJob) // lo haremos en una base de datos con un INSERT
 
     return newJob
+  }
+
+  static async update({ id, titulo, empresa, ubicacion, data }) {
+    const updatedJob = {
+      titulo,
+      empresa,
+      ubicacion,
+      data
+    }
+    const job = await JobModel.getById(id);
+
+    return { ...job, ...updatedJob }
+  }
+
+  static async partialUpdate({id, partialData}) {
+    const job = await JobModel.getById(id);
+    return {...job, ...partialData};
+  }
+  
+
+  static async delete(id) {
+    const jobsNonDeleted = jobs.find(job => job.id !== id)
+    return jobsNonDeleted
   }
 }

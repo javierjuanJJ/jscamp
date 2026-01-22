@@ -9,7 +9,7 @@ export class JobController {
 
     const limitNumber = Number(limit)
     const offsetNumber = Number(offset)
-    
+
     return res.json({ data: jobs, total: jobs.length, limit: limitNumber, offset: offsetNumber })
   }
 
@@ -27,12 +27,100 @@ export class JobController {
 
   static async create(req, res) {
     const { titulo, empresa, ubicacion, data } = req.body
+
+    if (!titulo) {
+      res.status(404).json('You have to put titulo parameter')
+    }
+
+    if (!empresa) {
+      res.status(404).json('You have to put empresa parameter')
+    }
+
+    if (!ubicacion) {
+      res.status(404).json('You have to put ubicacion parameter')
+    }
+
+    if (!data) {
+      res.status(404).json('You have to put data parameter')
+    }
+
+    if (!Array.isArray(data)) {
+      res.status(404).json('You have to put data parameter')
+    }
+
+
+
     const newJob = await JobModel.create({ titulo, empresa, ubicacion, data })
 
     return res.status(201).json(newJob)
   }
 
-  static async update(req, res) {}
-  static async partialUpdate(req, res) {}
-  static async delete(req, res) {}
+  static async update(req, res) {
+    const { id } = req.params
+
+    const { titulo, empresa, ubicacion, data } = req.body
+
+    const job = JobModel.getById({ id })
+
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' })
+    }
+
+    if (!titulo) {
+      res.status(404).json('You have to put titulo parameter')
+    }
+
+    if (!empresa) {
+      res.status(404).json('You have to put empresa parameter')
+    }
+
+    if (!ubicacion) {
+      res.status(404).json('You have to put ubicacion parameter')
+    }
+
+    if (!data) {
+      res.status(404).json('You have to put data parameter')
+    }
+
+    if (!Array.isArray(data)) {
+      res.status(404).json('You have to put data parameter')
+    }
+
+    const updatedJob = await JobModel.update({ id, titulo, empresa, ubicacion, data })
+    return res.status(201).json(updatedJob)
+
+  }
+  static async partialUpdate(req, res) {
+    const { id } = req.params
+
+    const partialData = req.body
+  
+    // Obtener el job por id
+    const job = JobModel.getById(id)
+  
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' })
+    }
+  
+    // Actualizar parcialmente
+    const updatedJob = await JobModel.partialUpdate({id, partialData})
+  
+    return res.status(200).json(updatedJob) // 200 porque es PATCH
+  }
+
+  
+
+  static async delete(req, res) {
+    const { id } = req.params
+
+    const job = await JobModel.getById(id)
+
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' })
+    }
+
+    const jobsNonDeleted = await JobModel.delete(id)
+
+    return res.status(201).json(`Job deleted succesfully`)
+  }
 }
