@@ -30,6 +30,10 @@ export class JobModel {
     return job
   }
 
+  static async getByIndexId(id) {
+    return jobs.findIndex(job => job.id === id);
+  }
+
   static async create({ titulo, empresa, ubicacion, data }) {
     const newJob = {
       id: crypto.randomUUID(),
@@ -46,7 +50,7 @@ export class JobModel {
 
   static async update({ id, titulo, empresa, ubicacion, data }) {
 
-    const index = jobs.findIndex(job => job.id === id);
+    const index = await JobModel.getByIndexId(id);
 
     // Creamos el objeto actualizado
     const updatedJob = {
@@ -64,7 +68,7 @@ export class JobModel {
   }
 
   static async partialUpdate({ id, partialData }) {
-    const index = jobs.findIndex(job => job.id === id);
+    const index = await JobModel.getByIndexId(id);
     // Actualizamos solo las propiedades que vienen en partialData
     jobs[index] = { ...jobs[index], ...partialData };
 
@@ -73,7 +77,7 @@ export class JobModel {
 
 
   static async delete(id) {
-    const index = jobs.findIndex(job => job.id === id);
+    const index = await JobModel.getByIndexId(id);
 
     jobs.splice(index, 1);
   }
