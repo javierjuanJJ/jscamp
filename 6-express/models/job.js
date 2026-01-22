@@ -45,25 +45,36 @@ export class JobModel {
   }
 
   static async update({ id, titulo, empresa, ubicacion, data }) {
+
+    const index = jobs.findIndex(job => job.id === id);
+
+    // Creamos el objeto actualizado
     const updatedJob = {
+      ...jobs[index],  // mantenemos lo que haya
       titulo,
       empresa,
       ubicacion,
       data
-    }
-    const job = await JobModel.getById(id);
+    };
 
-    return { ...job, ...updatedJob }
+    // Persistimos en memoria
+    jobs[index] = updatedJob;
+
+    return updatedJob;
   }
 
-  static async partialUpdate({id, partialData}) {
-    const job = await JobModel.getById(id);
-    return {...job, ...partialData};
+  static async partialUpdate({ id, partialData }) {
+    const index = jobs.findIndex(job => job.id === id);
+    // Actualizamos solo las propiedades que vienen en partialData
+    jobs[index] = { ...jobs[index], ...partialData };
+
+    return jobs[index];
   }
-  
+
 
   static async delete(id) {
-    const jobsNonDeleted = jobs.find(job => job.id !== id)
-    return jobsNonDeleted
+    const index = jobs.findIndex(job => job.id === id);
+
+    jobs.splice(index, 1);
   }
 }
