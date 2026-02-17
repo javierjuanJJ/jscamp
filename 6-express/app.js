@@ -15,3 +15,5 @@ if (!process.env.NODE_ENV) {
     console.log(`Servidor levantado en http://localhost:${PORT}`)
   })
 }
+
+export default app
