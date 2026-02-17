@@ -28,28 +28,6 @@ export class JobController {
   static async create(req, res) {
     const { titulo, empresa, ubicacion, data } = req.body
 
-    if (!titulo) {
-      res.status(404).json('You have to put titulo parameter')
-    }
-
-    if (!empresa) {
-      res.status(404).json('You have to put empresa parameter')
-    }
-
-    if (!ubicacion) {
-      res.status(404).json('You have to put ubicacion parameter')
-    }
-
-    if (!data) {
-      res.status(404).json('You have to put data parameter')
-    }
-
-    if (!Array.isArray(data)) {
-      res.status(404).json('You have to put data parameter')
-    }
-
-
-
     const newJob = await JobModel.create({ titulo, empresa, ubicacion, data })
 
     return res.status(201).json(newJob)
@@ -64,26 +42,6 @@ export class JobController {
 
     if (!job) {
       return res.status(404).json({ error: 'Job not found' })
-    }
-
-    if (!titulo) {
-      res.status(404).json('You have to put titulo parameter')
-    }
-
-    if (!empresa) {
-      res.status(404).json('You have to put empresa parameter')
-    }
-
-    if (!ubicacion) {
-      res.status(404).json('You have to put ubicacion parameter')
-    }
-
-    if (!data) {
-      res.status(404).json('You have to put data parameter')
-    }
-
-    if (!Array.isArray(data)) {
-      res.status(404).json('You have to put data parameter')
     }
 
     const updatedJob = await JobModel.update({ id, titulo, empresa, ubicacion, data })
