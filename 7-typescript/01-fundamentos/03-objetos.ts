@@ -1,4 +1,4 @@
-import type { User, UserEntity } from './00-types.ts'
+import type { User, UserEntity } from './00-types'
 
 // type User = {
 //   name: string
